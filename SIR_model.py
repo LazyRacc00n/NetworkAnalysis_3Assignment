@@ -11,20 +11,20 @@ class Labels:
     I_color = "red"
     R_color = "green"
     
-    map_color = lambda label: S_color if label == S else I_color if label == I else R_color
+    map_color = lambda label: Labels.S_color if label == Labels.S else Labels.I_color if label == Labels.I else Labels.R_color
 
 
 
 class SIR:
 
-    def __init__(self, graph, p, Ti, q, i_0):
+    def __init__(self, graph, p, q, Ti, i_0):
 
         if p > 1 or p < 0:
             raise ValueError(" p is a probability from 0 to 1.")
 
         self.p = p # the disease transmission probability
 
-        if Ti > 0:
+        if Ti <= 0:
             raise ValueError(" the minimum amount of time a node remains infected should be greater than zero")
 
         self.Ti = Ti # the minimum amount of time a node remains infected
@@ -41,7 +41,7 @@ class SIR:
         self.i_0 = i_0 # number of individuals initially infected
         self.i_list = [] # list of infected
         self.graph = graph # networkx graph
-        self.graph_labelled # graph used to process the model (a copy of graph)
+        self.graph_labelled = None # graph used to process the model (a copy of graph)
 
         self.state_label = "state"
         self.Ti_label = "Ti"
@@ -49,7 +49,8 @@ class SIR:
     
     def init_graph(self):
         # label all node of the graph as Susceptible
-        self.graph_labelled = nx.set_node_attributes(self.graph, Labels.S, self.state_label).copy()
+        self.graph_labelled = self.graph.copy()
+        nx.set_node_attributes(self.graph_labelled , Labels.S, self.state_label)
 
         # set the Ti for each node to 0
         nx.set_node_attributes(self.graph_labelled, 0, self.Ti_label)
@@ -57,7 +58,7 @@ class SIR:
     def infect_initial_nodes(self):
         
         # randomly selected nodes
-        infected_nodes = random.sample(self.graph_labelled, self.i_0)
+        infected_nodes = random.sample(list(self.graph_labelled), self.i_0)
         
         # attributes state and Ti of all nodes
         map_attr = { node : { self.state_label : Labels.I , self.Ti_label : self.Ti } for node in infected_nodes}        
@@ -67,7 +68,7 @@ class SIR:
     def plot_graph(self):  
         
         # color map according to the status
-        color_map = [ Labels.map_color(node[self.state_label]) for node in self.graph_labelled]
+        color_map = [ Labels.map_color(self.graph_labelled.nodes[node][self.state_label]) for node in self.graph_labelled]
 
         nx.draw(self.graph_labelled, node_color=color_map, with_labels=True)
         plt.show()
@@ -77,7 +78,7 @@ class SIR:
     def convergence_test(self):
         
         # get all nodes
-        node_list = [ node for node in self.graph_labelled]
+        node_list = [ self.graph_labelled.nodes[node] for node in self.graph_labelled]
 
         # filter all nodes in state R
         filtered = list(filter(lambda node: node[self.state_label] == Labels.R, node_list))
@@ -86,7 +87,7 @@ class SIR:
     # if a minimum of TI time steps have elapsed, move the node to the compartment R with probability q
     def I_to_R(self, node):
 
-        if node[self.Ti_label] > 0:
+        if self.graph_labelled.nodes[node][self.Ti_label] > 0:
             return
 
         # sample a random number and, if the result is less than q, move the node to the compartment R
@@ -114,24 +115,41 @@ class SIR:
                 node_list.append(neigh)
 
         return node_list
+
+    # from recovered to susceptible if remaining T == 0
+    def R_to_S():
+        return 
     
     def run(self):
         
-        self.infect_initial_nodes()
+        # init the graph
+        self.init_graph()
         
-        time_step = 1
+        # init the nodes
+        self.infect_initial_nodes()
+
+        # plot the first time step
+        self.plot_graph()
+        
+        time_step = 2
         while not self.convergence_test(): ## Repeat the recovery / contagion until all nodes are in compartment R (e.g., Recovered / Removed)
             
-            
-            for infected_node in self.i_list:
-                #from I to R
-                if True:
-                    pass
-                #from S to I
-                pass
-            
+            # da fare per ogni coso infetto
+            self.I_to_R("0")
+            node_list  = self.S_to_I("0")
+            print(node_list)
+
+            # at the end of the transition...plot
+            self.plot_graph()
+
             time_step = time_step + 1
         pass
 
 if __name__ == "__main__":
+
+    G = nx.karate_club_graph()
+
+    model = SIR(G, 0.5, 0.5, 5, 5 )
+
+    model.run()
     pass

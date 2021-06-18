@@ -102,7 +102,7 @@ class SIR:
         node_list = [ self.graph_labelled.nodes[node] for node in self.graph_labelled]
 
         # filter all nodes in state R
-        filtered = list(filter(lambda node: node[self.state_label] != Labels.R, node_list))
+        filtered = list(filter(lambda node: node[self.state_label] not in [Labels.R, Labels.S]  , node_list))
 
         return len(filtered) == 0
 
@@ -139,25 +139,27 @@ class SIR:
         # for each neighbor of an infected node, sample a random number and
         #  if the result is less than p, a contagion occurs and the neighbor moves to the compartment I
         for neigh in self.graph_labelled.neighbors(node):
-            random_value  = random.random()
 
-            if random_value < self.p:
-                node_list.append(neigh)
+            if self.graph_labelled.nodes[neigh][self.state_label] == Labels.S:
+                random_value  = random.random()
+
+                if random_value < self.p:
+                    node_list.append(neigh)
 
         return node_list
 
     # from recovered to susceptible 
     # return True if the node is now Susceptible
-    def R_to_S(self, node):
+    #def R_to_S(self, node):
 
-        if self.graph_labelled.nodes[node][self.state_label] != Labels.R:
-            return False
+        #if self.graph_labelled.nodes[node][self.state_label] != Labels.R:
+            #return False
 
         # transition state from R to S
-        map_attr = { node : { self.state_label : Labels.S , self.Ti_label : 0 }}        
-        nx.set_node_attributes(self.graph_labelled, map_attr)
+        #map_attr = { node : { self.state_label : Labels.S , self.Ti_label : 0 }}        
+        #nx.set_node_attributes(self.graph_labelled, map_attr)
 
-        return True
+        #return True
 
     # change the state into new_state and Ti into new_Ti for all node in node_list
     def change_state(self, node_list, new_state, new_Ti):
@@ -204,12 +206,12 @@ class SIR:
                 new_infected_list  +=  self.S_to_I(infected)
                 
             # Transition from R to S
-            for recovered in self.current_recovered_list:
-                is_susceptible = self.R_to_S(recovered)
+            #for recovered in self.current_recovered_list:
+                #is_susceptible = self.R_to_S(recovered)
 
                 # if it's not recovered anymore it is removed from current_recovered
-                if is_susceptible:
-                    new_susceptible_list.append(recovered)
+                #if is_susceptible:
+                    #new_susceptible_list.append(recovered)
 
             # TRANSITIONS
 
@@ -218,10 +220,10 @@ class SIR:
             self.change_state(new_infected_list, Labels.I, self.Ti)
 
             # from R to S, remove from the list
-            self.change_state(new_susceptible_list, Labels.S, 0)
+            #self.change_state(new_susceptible_list, Labels.S, 0)
             self.current_recovered_list += new_recovered_list
 
-            self.current_recovered_list = list( set(self.current_recovered_list) - set(new_susceptible_list))
+            #self.current_recovered_list = list( set(self.current_recovered_list) - set(new_susceptible_list))
 
             # at the end of the transition...plot
             self.plot_graph()

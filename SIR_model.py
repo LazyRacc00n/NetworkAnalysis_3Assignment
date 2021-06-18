@@ -3,6 +3,10 @@ import networkx as nx
 import random
 import os
 
+from gephistreamer import graph
+from gephistreamer import streamer
+
+
 class Labels:
     S = "Susceptible"
     I = "Infected"
@@ -40,7 +44,7 @@ class SIR:
        
         
         self.i_0 = i_0 # number of individuals initially infected
-        self.current_infected = [] # list of infected
+        self.current_infected_list = [] # list of infected
         
         self.graph = graph # networkx graph
         self.graph_labelled = None # graph used to process the model (a copy of graph)
@@ -79,6 +83,8 @@ class SIR:
         map_attr = { node : { self.state_label : Labels.I , self.Ti_label : self.Ti } for node in infected_nodes}        
         nx.set_node_attributes(self.graph_labelled, map_attr)
 
+        self.current_infected_list = infected_nodes
+
     # plot the graph with the associated colors to the nodes...da decidere come plottare quello big
     def plot_graph(self):  
         
@@ -87,6 +93,7 @@ class SIR:
 
         nx.draw(self.graph_labelled, node_color=color_map, with_labels=True)
         
+    
         plt.savefig(os.path.join("images", self.name_experiment, str(self.time_step) + ".png"))
 
     # algorithm stops when all nodes are in R state
@@ -101,11 +108,12 @@ class SIR:
         return len(filtered) == 0
 
     # if a minimum of TI time steps have elapsed, move the node to the compartment R with probability q
+    # return True if the node recovered
     def I_to_R(self, node):
 
         if self.graph_labelled.nodes[node][self.Ti_label] > 0:
-            return
-
+            return False
+            
         # sample a random number and, if the result is less than q, move the node to the compartment R
         random_value  = random.randrange(0, 1, 0.001)
 
@@ -113,7 +121,9 @@ class SIR:
             map_attr = { node : { self.state_label : Labels.R , self.Ti_label : 0 }}        
             nx.set_node_attributes(self.graph_labelled, map_attr)
 
-        return 
+            return True
+
+        return False
             
 
     #  look at their neighbors and spread the contagion with probability p
@@ -133,7 +143,11 @@ class SIR:
         return node_list
 
     # from recovered to susceptible if remaining T == 0
-    def R_to_S():
+    def R_to_S(self, node):
+
+
+        
+        
         return 
     
     def run(self):
@@ -152,16 +166,32 @@ class SIR:
         
         while not self.convergence_test(): ## Repeat the recovery / contagion until all nodes are in compartment R (e.g., Recovered / Removed)
             
-            # da fare per ogni coso infetto
-            self.I_to_R("0")
-            node_list  = self.S_to_I("0")
-            print(node_list)
+            recovered_list = []
+            for infected in self.current_infected_list:
+
+                # da fare per ogni coso infetto
+                is_recovered = self.I_to_R(infected)
+
+                # if recovered it is remove from current_infected
+                if is_recovered:
+                    recovered_list.append(infected)
+
+            # remove recovereed
+            self.current_infected_list = list(filter(lambda node: node in recovered_list, self.current_infected_list))
+            
+            # the list is updated...if a node is Recovered in the previuos for cicle it cannot spread the contagion
+            for infected in self.current_infected_list:
+                node_list  = self.S_to_I(infected)
+                print(node_list)
+
+
+            
 
             # at the end of the transition...plot
-            self.plot_graph( )
+            self.plot_graph()
+
             time_step = time_step + 1
 
-        pass
 
 if __name__ == "__main__":
 
@@ -170,4 +200,4 @@ if __name__ == "__main__":
     model = SIR(G, 0.5, 0.5, 5, 5, "Exp1" )
 
     model.run()
-    
+   

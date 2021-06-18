@@ -2,11 +2,6 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import random
 import os
-
-from gephistreamer import graph
-from gephistreamer import streamer
-
-
 class Labels:
     S = "Susceptible"
     I = "Infected"
@@ -45,6 +40,7 @@ class SIR:
         
         self.i_0 = i_0 # number of individuals initially infected
         self.current_infected_list = [] # list of infected
+        self.current_recovered_list = [] # list of recovered
         
         self.graph = graph # networkx graph
         self.graph_labelled = None # graph used to process the model (a copy of graph)
@@ -58,6 +54,8 @@ class SIR:
         self.state_label = "state"
         self.Ti_label = "Ti"
 
+        # save layout for draw
+        self.pos = nx.kamada_kawai_layout(self.graph)
 
         # create the dir for the images if they not exists
         if not os.path.isdir("images"):
@@ -78,23 +76,23 @@ class SIR:
         
         # randomly selected nodes
         infected_nodes = random.sample(list(self.graph_labelled), self.i_0)
-        
-        # attributes state and Ti of all nodes
-        map_attr = { node : { self.state_label : Labels.I , self.Ti_label : self.Ti } for node in infected_nodes}        
-        nx.set_node_attributes(self.graph_labelled, map_attr)
+
+        self.change_state(infected_nodes, Labels.I, self.Ti)
 
         self.current_infected_list = infected_nodes
 
     # plot the graph with the associated colors to the nodes...da decidere come plottare quello big
     def plot_graph(self):  
-        
+    
+
         # color map according to the status
         color_map = [ Labels.map_color(self.graph_labelled.nodes[node][self.state_label]) for node in self.graph_labelled]
 
-        nx.draw(self.graph_labelled, node_color=color_map, with_labels=True)
+        nx.draw(self.graph_labelled, node_color=color_map, with_labels=True, pos=self.pos)
         
-    
         plt.savefig(os.path.join("images", self.name_experiment, str(self.time_step) + ".png"))
+
+        plt.clf()
 
     # algorithm stops when all nodes are in R state
     # return true if all nodes are in state R
@@ -104,22 +102,25 @@ class SIR:
         node_list = [ self.graph_labelled.nodes[node] for node in self.graph_labelled]
 
         # filter all nodes in state R
-        filtered = list(filter(lambda node: node[self.state_label] == Labels.R, node_list))
+        filtered = list(filter(lambda node: node[self.state_label] != Labels.R, node_list))
+
         return len(filtered) == 0
 
     # if a minimum of TI time steps have elapsed, move the node to the compartment R with probability q
+    # for nodes that are infected the T is decreased
     # return True if the node recovered
     def I_to_R(self, node):
 
         if self.graph_labelled.nodes[node][self.Ti_label] > 0:
+            self.graph_labelled.nodes[node][self.Ti_label] -= 1
             return False
             
         # sample a random number and, if the result is less than q, move the node to the compartment R
-        random_value  = random.randrange(0, 1, 0.001)
+        random_value  = random.random()
 
         if random_value < self.q:
-            map_attr = { node : { self.state_label : Labels.R , self.Ti_label : 0 }}        
-            nx.set_node_attributes(self.graph_labelled, map_attr)
+
+            self.change_state([node], Labels.R, 0)
 
             return True
 
@@ -128,6 +129,9 @@ class SIR:
 
     #  look at their neighbors and spread the contagion with probability p
     def S_to_I(self, node):
+
+        if self.graph_labelled.nodes[node][self.state_label] != Labels.I:
+            return []
         
         # list of nodes that are infected
         node_list = []
@@ -135,20 +139,33 @@ class SIR:
         # for each neighbor of an infected node, sample a random number and
         #  if the result is less than p, a contagion occurs and the neighbor moves to the compartment I
         for neigh in self.graph_labelled.neighbors(node):
-            random_value  = random.randrange(0, 1, 0.001)
+            random_value  = random.random()
 
             if random_value < self.p:
                 node_list.append(neigh)
 
         return node_list
 
-    # from recovered to susceptible if remaining T == 0
+    # from recovered to susceptible 
+    # return True if the node is now Susceptible
     def R_to_S(self, node):
 
+        if self.graph_labelled.nodes[node][self.state_label] != Labels.R:
+            return False
 
-        
-        
-        return 
+        # transition state from R to S
+        map_attr = { node : { self.state_label : Labels.S , self.Ti_label : 0 }}        
+        nx.set_node_attributes(self.graph_labelled, map_attr)
+
+        return True
+
+    # change the state into new_state and Ti into new_Ti for all node in node_list
+    def change_state(self, node_list, new_state, new_Ti):
+
+        map_attr = { node : { self.state_label : new_state , self.Ti_label : new_Ti } for node in node_list}  
+
+        nx.set_node_attributes(self.graph_labelled, map_attr)
+
     
     def run(self):
         
@@ -164,40 +181,59 @@ class SIR:
         self.time_step = 2
     
         
-        while not self.convergence_test(): ## Repeat the recovery / contagion until all nodes are in compartment R (e.g., Recovered / Removed)
+        while not self.convergence_test(): 
             
-            recovered_list = []
+            new_recovered_list = []
+            new_infected_list = []
+            new_susceptible_list = []
+            
             for infected in self.current_infected_list:
-
-                # da fare per ogni coso infetto
                 is_recovered = self.I_to_R(infected)
 
                 # if recovered it is remove from current_infected
                 if is_recovered:
-                    recovered_list.append(infected)
+                    new_recovered_list.append(infected)
 
-            # remove recovereed
-            self.current_infected_list = list(filter(lambda node: node in recovered_list, self.current_infected_list))
-            
+            # TRANSITION
+            # from I to R, remove from the list
+            self.change_state(new_recovered_list, Labels.R, 0)
+            self.current_infected_list = list( set(self.current_infected_list) - set(new_recovered_list) )
+
             # the list is updated...if a node is Recovered in the previuos for cicle it cannot spread the contagion
             for infected in self.current_infected_list:
-                node_list  = self.S_to_I(infected)
-                print(node_list)
+                new_infected_list  +=  self.S_to_I(infected)
+                
+            # Transition from R to S
+            for recovered in self.current_recovered_list:
+                is_susceptible = self.R_to_S(recovered)
 
+                # if it's not recovered anymore it is removed from current_recovered
+                if is_susceptible:
+                    new_susceptible_list.append(recovered)
 
-            
+            # TRANSITIONS
+
+            # add the new current infected
+            self.current_infected_list += new_infected_list
+            self.change_state(new_infected_list, Labels.I, self.Ti)
+
+            # from R to S, remove from the list
+            self.change_state(new_susceptible_list, Labels.S, 0)
+            self.current_recovered_list += new_recovered_list
+
+            self.current_recovered_list = list( set(self.current_recovered_list) - set(new_susceptible_list))
 
             # at the end of the transition...plot
             self.plot_graph()
 
-            time_step = time_step + 1
+            self.time_step = self.time_step + 1
 
 
 if __name__ == "__main__":
 
     G = nx.karate_club_graph()
 
-    model = SIR(G, 0.5, 0.5, 5, 5, "Exp1" )
+    model = SIR(G, 0.3, 0.5, 5, 2, "Exp1" )
 
     model.run()
    

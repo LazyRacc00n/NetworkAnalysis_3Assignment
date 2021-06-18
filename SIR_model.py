@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import random
+import os
 
 class Labels:
     S = "Susceptible"
@@ -17,7 +18,7 @@ class Labels:
 
 class SIR:
 
-    def __init__(self, graph, p, q, Ti, i_0):
+    def __init__(self, graph, p, q, Ti, i_0, name_exp):
 
         if p > 1 or p < 0:
             raise ValueError(" p is a probability from 0 to 1.")
@@ -39,13 +40,27 @@ class SIR:
        
         
         self.i_0 = i_0 # number of individuals initially infected
-        self.i_list = [] # list of infected
+        self.current_infected = [] # list of infected
+        
         self.graph = graph # networkx graph
         self.graph_labelled = None # graph used to process the model (a copy of graph)
 
+        # name of the experiment
+        self.name_experiment = name_exp
+
+        # current time in the experiment
+        self.time_step = 1
+
         self.state_label = "state"
         self.Ti_label = "Ti"
-    
+
+
+        # create the dir for the images if they not exists
+        if not os.path.isdir("images"):
+            os.mkdir("images")
+        
+        if not os.path.isdir(os.path.join("images",self.name_experiment)):
+            os.mkdir(os.path.join("images", self.name_experiment))    
     
     def init_graph(self):
         # label all node of the graph as Susceptible
@@ -71,7 +86,8 @@ class SIR:
         color_map = [ Labels.map_color(self.graph_labelled.nodes[node][self.state_label]) for node in self.graph_labelled]
 
         nx.draw(self.graph_labelled, node_color=color_map, with_labels=True)
-        plt.show()
+        
+        plt.savefig(os.path.join("images", self.name_experiment, str(self.time_step) + ".png"))
 
     # algorithm stops when all nodes are in R state
     # return true if all nodes are in state R
@@ -131,7 +147,9 @@ class SIR:
         # plot the first time step
         self.plot_graph()
         
-        time_step = 2
+        self.time_step = 2
+    
+        
         while not self.convergence_test(): ## Repeat the recovery / contagion until all nodes are in compartment R (e.g., Recovered / Removed)
             
             # da fare per ogni coso infetto
@@ -140,16 +158,16 @@ class SIR:
             print(node_list)
 
             # at the end of the transition...plot
-            self.plot_graph()
-
+            self.plot_graph( )
             time_step = time_step + 1
+
         pass
 
 if __name__ == "__main__":
 
     G = nx.karate_club_graph()
 
-    model = SIR(G, 0.5, 0.5, 5, 5 )
+    model = SIR(G, 0.5, 0.5, 5, 5, "Exp1" )
 
     model.run()
-    pass
+    

@@ -158,9 +158,14 @@ class SIR:
                 I_list.append(int(num_I)/n)
             
         # plot curves
-        plt.plot(time_list, S_list, label="Susceptible", c=Labels.S_color)
-        plt.plot(time_list, R_list, label="Recovered", c=Labels.R_color)
-        plt.plot(time_list, I_list, label="Infected", c=Labels.I_color)
+        plt.plot(time_list, S_list, "-o",  label="Susceptible", c=Labels.S_color)
+        plt.plot(time_list, R_list, "-o", label="Recovered", c=Labels.R_color)
+        plt.plot(time_list, I_list, "-o", label="Infected", c=Labels.I_color)
+
+        plt.title(self.name_experiment)
+        plt.xlabel('Time')
+        plt.ylabel('Relative number of nodes')
+        plt.legend()
 
         plt.savefig(os.path.join(IMAGES_FOLDER, self.name_experiment,  "curves.png"))
 
@@ -293,9 +298,8 @@ class SIR:
 
 if __name__ == "__main__":
 
+    # experiment with karate club graph to test the code
     G = nx.karate_club_graph()
-
-    model = SIR(G, 0.3, 0.5, 5, 2, "Exp1" )
-
+    model = SIR(G, 0.3, 0.5, 5, 2, "Karate_club" )
     model.run()
    

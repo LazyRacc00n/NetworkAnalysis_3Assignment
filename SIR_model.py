@@ -322,6 +322,7 @@ class SIR:
             # from I to R, remove from the list
             self.change_state(new_recovered_list, Labels.R, 0)
             self.current_infected_list = list( set(self.current_infected_list) - set(new_recovered_list) )
+            self.current_recovered_list += new_recovered_list
 
             # the list is updated...if a node is Recovered in the previuos for cicle it cannot spread the contagion
             for infected in self.current_infected_list:
@@ -333,10 +334,6 @@ class SIR:
             # add the new current infected
             self.current_infected_list += new_infected_list
             self.change_state(new_infected_list, Labels.I, self.Ti)
-
-            # from R to S, remove from the list
-            self.current_recovered_list += new_recovered_list
-
 
             # at the end of the transition...plot
             self.process_time_step()

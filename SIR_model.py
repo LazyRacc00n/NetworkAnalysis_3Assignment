@@ -5,6 +5,7 @@ import os
 
 IMAGES_FOLDER = "images"
 DATA_FOLDER = "data"
+MAX_NODE_DRAW = 3000
 class Labels:
     S = "Susceptible"
     I = "Infected"
@@ -17,6 +18,53 @@ class Labels:
     map_color = lambda label: Labels.S_color if label == Labels.S else Labels.I_color if label == Labels.I else Labels.R_color
 
 
+def load_dataset(sample = False, K = None):
+    
+    # if sample == True then only K randomly selected nodes are loaded
+    
+    # create graph
+    G = nx.Graph()
+   
+    N = 0
+
+    with open("dataset/facebook_combined.edges") as edges:
+        
+        
+        for row in edges:
+            if len(row.split(" ")) == 1:
+                continue
+        
+            source, target = row.split(" ")[:2]
+            source = int(source)
+            target = int(target)
+                        
+            # add nodes if not in yet
+            if source not in G:
+                G.add_node(source)
+        
+            if target not in G:
+                G.add_node(target)
+        
+            # add edge
+            G.add_edge(source, target)
+            
+        # total number of nodes
+        N = nx.number_of_nodes(G)
+
+        # remove nodes so that to mantain the graph connected (N - K nodes to remove)
+        if sample:
+            
+            # deepcopy
+            G_c = G.copy()
+            
+            # choose randomly node
+            remove = random.sample([node for node ,degree in G.degree()], N-K)
+            G_c.remove_nodes_from(remove)
+            
+            
+            G = G_c
+                
+        return G
 
 class SIR:
 
@@ -58,7 +106,8 @@ class SIR:
         self.Ti_label = "Ti"
 
         # save layout for draw
-        self.pos = nx.kamada_kawai_layout(self.graph)
+        if len(self.graph) < MAX_NODE_DRAW:
+            self.pos = nx.kamada_kawai_layout(self.graph)
 
         # create folders to store data
         self.create_folders()
@@ -125,10 +174,10 @@ class SIR:
 
 
     # for each time step draw the graph and save the data
-    def non_so_come_chiamarla(self):
+    def process_time_step(self):
 
         # plot only  small graph
-        if len(self.graph_labelled) < 3000:
+        if len(self.graph_labelled) < MAX_NODE_DRAW:
             self.plot_graph()
         
         # save data about time step
@@ -241,8 +290,10 @@ class SIR:
         # init the graph
         self.init_graph()
 
+        print("SIMULATION START: " + self.name_experiment)
+
         # plot the time zero: no infection
-        self.non_so_come_chiamarla()
+        self.process_time_step()
         
         self.time_step += 1
 
@@ -250,7 +301,7 @@ class SIR:
         self.infect_initial_nodes()
 
         # plot the first time step: start the contagion
-        self.non_so_come_chiamarla()
+        self.process_time_step()
         
         self.time_step += 1
     
@@ -288,12 +339,14 @@ class SIR:
 
 
             # at the end of the transition...plot
-            self.non_so_come_chiamarla()
+            self.process_time_step()
 
             self.time_step = self.time_step + 1
         
         # at the end of the simulation plot and save epidemic curve
         self.plot_curve()
+
+        print("SIMULATION END "  + self.name_experiment)
 
 
 if __name__ == "__main__":
@@ -303,3 +356,8 @@ if __name__ == "__main__":
     model = SIR(G, 0.3, 0.5, 5, 2, "Karate_club" )
     model.run()
    
+    # experiment with facebook dataset
+    G = load_dataset()
+
+    model = SIR(G, 0.3, 0.5, 5, 2, "Facebook" )
+    model.run()

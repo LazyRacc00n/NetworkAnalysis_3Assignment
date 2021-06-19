@@ -374,7 +374,7 @@ if __name__ == "__main__":
     print(k)
 
     # R < 1
-    p = 0.01
+    p = 0.02
     R = k * p
     print("R = ", R)
     model = SIR(G, p, 0.2, 15, 1, "Facebook_R_smaller_1" )

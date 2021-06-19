@@ -146,7 +146,7 @@ class SIR:
 
         self.current_infected_list = infected_nodes
 
-    # plot the graph with the associated colors to the nodes...da decidere come plottare quello big
+    # plot the graph with the associated colors to the nodes
     def plot_graph(self):  
     
         # color map according to the status
@@ -197,6 +197,7 @@ class SIR:
         R_list = []
         I_list =[]
 
+        # read file
         with open(os.path.join(DATA_FOLDER,self.name_experiment, "data.txt"), "r") as f:
 
             for line in f:
@@ -321,7 +322,7 @@ class SIR:
             # TRANSITION
             # from I to R, remove from the list
             self.change_state(new_recovered_list, Labels.R, 0)
-            self.current_infected_list = list( set(self.current_infected_list) - set(new_recovered_list) )
+            self.current_infected_list = list( filter(lambda node: node not in new_recovered_list, self.current_infected_list) )
             self.current_recovered_list += new_recovered_list
 
             # the list is updated...if a node is Recovered in the previuos for cicle it cannot spread the contagion

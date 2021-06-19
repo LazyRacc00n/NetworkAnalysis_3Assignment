@@ -218,18 +218,21 @@ class SIR:
 
         every_nth = 2
         for n, label in enumerate(ax.xaxis.get_ticklabels()):
+            
             if n % every_nth != 0:
-                label.set_visible(False)  
+                label.set_visible(False)
+            
+            if n == len(time_list)-1:
+                label.set_visible(True)
+            label.set
               
        
-        
-      
         plt.title(self.name_experiment)
         plt.xlabel('Time')
         plt.ylabel('Relative number of nodes')
         plt.legend()
 
-
+        plt.xticks(fontsize=7)
         plt.savefig(os.path.join(IMAGES_FOLDER, self.name_experiment,  "curves.png"))
         
 

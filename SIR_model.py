@@ -276,6 +276,8 @@ class SIR:
                 random_value  = random.random()
 
                 if random_value < self.p:
+                    # change state
+                    self.change_state([neigh], Labels.I, self.Ti)
                     node_list.append(neigh)
 
         return node_list
@@ -339,9 +341,7 @@ class SIR:
 
             # add the new current infected
             self.current_infected_list += new_infected_list
-            self.change_state(new_infected_list, Labels.I, self.Ti)
 
-            print(self.current_infected_list)
             # at the end of the transition...plot
             self.process_time_step()
 
@@ -357,11 +357,11 @@ if __name__ == "__main__":
 
     # experiment with karate club graph to test the code
     G = nx.karate_club_graph()
-    model = SIR(G, 0.3, 0.5, 5, 2, "Karate_club" )
+    model = SIR(G, 0.1, 0.2, 10, 1, "Karate_club" )
     model.run()
    
     # experiment with facebook dataset
     G = load_dataset()
 
-    model = SIR(G, 0.3, 0.5, 5, 2, "Facebook" )
+    model = SIR(G, 0.1, 0.2, 10, 1, "Facebook" )
     model.run()

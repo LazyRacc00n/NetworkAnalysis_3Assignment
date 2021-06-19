@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+import numpy as np
 import random
 import os
 
@@ -360,6 +361,9 @@ if __name__ == "__main__":
    
     # experiment with facebook dataset
     G = load_dataset()
+
+    # expected number of links of a node
+    k = 
 
     # R < 1
     model = SIR(G, 0.05, 0.2, 15, 1, "Facebook_R_smaller_1" )

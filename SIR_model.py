@@ -114,7 +114,7 @@ class SIR:
 
         # lines are in the form time_step,num_S,num_R,num_I 
 
-        with open(os.path.join(DATA_FOLDER,self.name_experiment), "a") as f:
+        with open(os.path.join(DATA_FOLDER,self.name_experiment, "data.txt"), "a") as f:
 
             num_I = self.current_infected_list
             num_R = self.current_recovered_list
@@ -148,7 +148,7 @@ class SIR:
         R_list = []
         I_list =[]
 
-        with open(os.path.join(DATA_FOLDER,self.name_experiment), "r") as f:
+        with open(os.path.join(DATA_FOLDER,self.name_experiment, "data.txt"), "r") as f:
 
             for line in f:
                 time, num_S, num_R, num_I= line.split(",")

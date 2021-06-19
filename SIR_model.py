@@ -114,7 +114,7 @@ class SIR:
 
         # lines are in the form time_step,num_S,num_R,num_I 
 
-        with open(os.path.join(DATA_FOLDER,self.name_experiment, "data.txt"), "a") as f:
+        with open(os.path.join(DATA_FOLDER,self.name_experiment, "data.txt"), "a" if self.time_step > 0 else "w") as f:
 
             num_I = len(self.current_infected_list)
             num_R = len(self.current_recovered_list)

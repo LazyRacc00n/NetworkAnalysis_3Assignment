@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+import collections
 import numpy as np
 import random
 import os
@@ -363,16 +364,27 @@ if __name__ == "__main__":
     G = load_dataset()
 
     # expected number of links of a node
-    k = 
+    degree = [d for n,d in G.degree()]
+    degreeCount = collections.Counter(degree)
+    deg, cnt = zip(*degreeCount.items())
+    deg= np.array(deg) # degree 
+    cnt = np.array(cnt) # counts per degree
+    k = np.average(deg, weights = cnt/cnt.sum())
+
+    print(k)
 
     # R < 1
-    model = SIR(G, 0.05, 0.2, 15, 1, "Facebook_R_smaller_1" )
+    p = 0
+    R = k * p
+    model = SIR(G, p, 0.2, 15, 1, "Facebook_R_smaller_1" )
     model.run()
 
     # R = 1
-    model = SIR(G, 0.05, 0.2, 15, 1, "Facebook_R_equal_1" )
+    p = 0
+    model = SIR(G, p, 0.2, 15, 1, "Facebook_R_equal_1" )
     model.run()
 
     # R > 1
-    model = SIR(G, 0.05, 0.2, 15, 1, "Facebook_R_greater_1" )
+    p = 0
+    model = SIR(G, p, 0.2, 15, 1, "Facebook_R_greater_1" )
     model.run()

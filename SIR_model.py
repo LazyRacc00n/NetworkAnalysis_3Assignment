@@ -147,13 +147,24 @@ class SIR:
 
         self.current_infected_list = infected_nodes
 
+    
+    # for each time step draw the graph and save the data
+    def process_time_step(self):
+
+        # plot only  small graph
+        if len(self.graph_labelled) < MAX_NODE_DRAW:
+            self.plot_graph()
+        
+        # save data about time step
+        self.save_time_step()
+
     # plot the graph with the associated colors to the nodes
     def plot_graph(self):  
     
         # color map according to the status
         color_map = [ Labels.map_color(self.graph_labelled.nodes[node][self.state_label]) for node in self.graph_labelled]
 
-        nx.draw(self.graph_labelled, node_color=color_map, with_labels=True, pos=self.pos)
+        nx.draw(self.graph_labelled, node_color=color_map, with_labels=False, pos=self.pos)
         
         plt.savefig(os.path.join(IMAGES_FOLDER, self.name_experiment, str(self.time_step) + ".png"))
 
@@ -171,19 +182,6 @@ class SIR:
             num_S = len(self.graph_labelled) - num_R - num_I
 
             f.write(str(self.time_step) + "," + str(num_S) + "," + str(num_R) + "," + str(num_I) + "\n" )
-        
-
-
-    # for each time step draw the graph and save the data
-    def process_time_step(self):
-
-        # plot only  small graph
-        if len(self.graph_labelled) < MAX_NODE_DRAW:
-            self.plot_graph()
-        
-        # save data about time step
-        self.save_time_step()
-
 
     # plot the epidemic curves
     def plot_curve(self):
@@ -209,9 +207,9 @@ class SIR:
                 I_list.append(int(num_I)/n)
             
         # plot curves
-        plt.plot(time_list, S_list, "-o",  label="Susceptible", c=Labels.S_color)
-        plt.plot(time_list, R_list, "-o", label="Recovered", c=Labels.R_color)
-        plt.plot(time_list, I_list, "-o", label="Infected", c=Labels.I_color)
+        plt.plot(time_list, S_list,  label="Susceptible", c=Labels.S_color)
+        plt.plot(time_list, R_list, label="Recovered", c=Labels.R_color)
+        plt.plot(time_list, I_list, label="Infected", c=Labels.I_color)
 
         plt.title(self.name_experiment)
         plt.xlabel('Time')

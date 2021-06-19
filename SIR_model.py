@@ -113,9 +113,11 @@ class SIR:
     # save the data about a time step inside the file txt
     def save_time_step(self):
 
-        f = open(os.path.join(DATA_FOLDER,self.name_experiment, "a"))
+        with open(os.path.join(DATA_FOLDER,self.name_experiment, "r")) as f:
 
-        f.close()
+    # Further file processing goes here
+            print("xd")
+        
 
 
     # for each time step draw the graph and save the data
@@ -132,13 +134,14 @@ class SIR:
     # plot the epidemic curves
     def plot_curve(self):
 
-        f = open(os.path.join(DATA_FOLDER,self.name_experiment, "r"))
+        with open(os.path.join(DATA_FOLDER,self.name_experiment, "r")) as f:
 
-        #print(f.readline())
-        for line in f:
-            print("pippo")
         
-        f.close()
+            #print(f.readline())
+            for line in f:
+                print("pippo")
+       
+
 
 
     # algorithm stops when all nodes are in R state

@@ -361,5 +361,14 @@ if __name__ == "__main__":
     # experiment with facebook dataset
     G = load_dataset()
 
-    model = SIR(G, 0.1, 0.2, 10, 1, "Facebook" )
+    # R < 1
+    model = SIR(G, 0.05, 0.2, 15, 1, "Facebook_R_smaller_1" )
+    model.run()
+
+    # R = 1
+    model = SIR(G, 0.05, 0.2, 15, 1, "Facebook_R_equal_1" )
+    model.run()
+
+    # R > 1
+    model = SIR(G, 0.05, 0.2, 15, 1, "Facebook_R_greater_1" )
     model.run()

@@ -116,11 +116,11 @@ class SIR:
 
         with open(os.path.join(DATA_FOLDER,self.name_experiment, "data.txt"), "a") as f:
 
-            num_I = self.current_infected_list
-            num_R = self.current_recovered_list
+            num_I = len(self.current_infected_list)
+            num_R = len(self.current_recovered_list)
             num_S = len(self.graph_labelled) - num_R - num_I
 
-            f.write(self.time_step + "," + num_S + "," + num_R + "," + num_I)
+            f.write(str(self.time_step) + "," + str(num_S) + "," + str(num_R) + "," + str(num_I) + "\n" )
         
 
 
@@ -153,9 +153,9 @@ class SIR:
             for line in f:
                 time, num_S, num_R, num_I= line.split(",")
                 time_list.append(time)
-                S_list.append(num_S/n)
-                R_list.append(num_R/n)
-                I_list.append(num_I/n)
+                S_list.append(int(num_S)/n)
+                R_list.append(int(num_R)/n)
+                I_list.append(int(num_I)/n)
             
         # plot curves
         plt.plot(time_list, S_list, label="Susceptible", c=Labels.S_color)

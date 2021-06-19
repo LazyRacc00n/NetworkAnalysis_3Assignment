@@ -371,10 +371,10 @@ if __name__ == "__main__":
     cnt = np.array(cnt) # counts per degree
     k = np.average(deg, weights = cnt/cnt.sum())
 
-    print(k)
+    print("Expected degree: ", k)
 
     # R < 1
-    p = 0.02
+    p = 0.015
     R = k * p
     print("R = ", R)
     model = SIR(G, p, 0.2, 15, 1, "Facebook_R_smaller_1" )

@@ -100,7 +100,6 @@ class SIR:
     # plot the graph with the associated colors to the nodes...da decidere come plottare quello big
     def plot_graph(self):  
     
-
         # color map according to the status
         color_map = [ Labels.map_color(self.graph_labelled.nodes[node][self.state_label]) for node in self.graph_labelled]
 
@@ -113,10 +112,15 @@ class SIR:
     # save the data about a time step inside the file txt
     def save_time_step(self):
 
-        with open(os.path.join(DATA_FOLDER,self.name_experiment, "r")) as f:
+        # lines are in the form time_step,num_S,num_R,num_I 
 
-    # Further file processing goes here
-            print("xd")
+        with open(os.path.join(DATA_FOLDER,self.name_experiment), "a") as f:
+
+            num_I = self.current_infected_list
+            num_R = self.current_recovered_list
+            num_S = len(self.graph_labelled) - num_R - num_I
+
+            f.write(self.time_step + "," + num_S + "," + num_R + "," + num_I)
         
 
 
@@ -134,14 +138,33 @@ class SIR:
     # plot the epidemic curves
     def plot_curve(self):
 
-        with open(os.path.join(DATA_FOLDER,self.name_experiment, "r")) as f:
+        # total number of nodes
+        n = len(self.graph_labelled)
 
-        
-            #print(f.readline())
+        time_list = []
+
+        # list of normalized numbers
+        S_list = []
+        R_list = []
+        I_list =[]
+
+        with open(os.path.join(DATA_FOLDER,self.name_experiment), "r") as f:
+
             for line in f:
-                print("pippo")
-       
+                time, num_S, num_R, num_I= line.split(",")
+                time_list.append(time)
+                S_list.append(num_S/n)
+                R_list.append(num_R/n)
+                I_list.append(num_I/n)
+            
+        # plot curves
+        plt.plot(time_list, S_list, label="Susceptible", c=Labels.S_color)
+        plt.plot(time_list, R_list, label="Recovered", c=Labels.R_color)
+        plt.plot(time_list, I_list, label="Infected", c=Labels.I_color)
 
+        plt.savefig(os.path.join(IMAGES_FOLDER, self.name_experiment,  "curves.png"))
+
+        plt.clf()
 
 
     # algorithm stops when all nodes are in R state

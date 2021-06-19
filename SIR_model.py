@@ -112,7 +112,11 @@ class SIR:
 
     # save the data about a time step inside the file txt
     def save_time_step(self):
-        return
+
+        f = open(os.path.join(DATA_FOLDER,self.name_experiment, "a"))
+
+        f.close()
+
 
     # for each time step draw the graph and save the data
     def non_so_come_chiamarla(self):
@@ -127,7 +131,15 @@ class SIR:
 
     # plot the epidemic curves
     def plot_curve(self):
-        return 
+
+        f = open(os.path.join(DATA_FOLDER,self.name_experiment, "r"))
+
+        #print(f.readline())
+        for line in f:
+            print("pippo")
+        
+        f.close()
+
 
     # algorithm stops when all nodes are in R state
     # return true if all nodes are in state R

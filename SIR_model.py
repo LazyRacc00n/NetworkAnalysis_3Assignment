@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import random
 import os
+
+IMAGES_FOLDER = "images"
+DATA_FOLDER = "data"
 class Labels:
     S = "Susceptible"
     I = "Infected"
@@ -49,7 +52,7 @@ class SIR:
         self.name_experiment = name_exp
 
         # current time in the experiment
-        self.time_step = 1
+        self.time_step = 0
 
         self.state_label = "state"
         self.Ti_label = "Ti"
@@ -57,13 +60,26 @@ class SIR:
         # save layout for draw
         self.pos = nx.kamada_kawai_layout(self.graph)
 
-        # create the dir for the images if they not exists
-        if not os.path.isdir("images"):
-            os.mkdir("images")
-        
-        if not os.path.isdir(os.path.join("images",self.name_experiment)):
-            os.mkdir(os.path.join("images", self.name_experiment))    
+        # create folders to store data
+        self.create_folders()
+            
     
+    def create_folders(self):
+        # create the dir for the images if they not exists
+        if not os.path.isdir(IMAGES_FOLDER):
+            os.mkdir(IMAGES_FOLDER)
+        
+        if not os.path.isdir(os.path.join(IMAGES_FOLDER,self.name_experiment)):
+            os.mkdir(os.path.join(IMAGES_FOLDER, self.name_experiment))
+
+        # create the dir for the data if they not exists
+        if not os.path.isdir(DATA_FOLDER):
+            os.mkdir(DATA_FOLDER)
+        
+        if not os.path.isdir(os.path.join(DATA_FOLDER,self.name_experiment)):
+            os.mkdir(os.path.join(DATA_FOLDER, self.name_experiment))
+
+
     def init_graph(self):
         # label all node of the graph as Susceptible
         self.graph_labelled = self.graph.copy()
@@ -90,9 +106,28 @@ class SIR:
 
         nx.draw(self.graph_labelled, node_color=color_map, with_labels=True, pos=self.pos)
         
-        plt.savefig(os.path.join("images", self.name_experiment, str(self.time_step) + ".png"))
+        plt.savefig(os.path.join(IMAGES_FOLDER, self.name_experiment, str(self.time_step) + ".png"))
 
         plt.clf()
+
+    # save the data about a time step inside the file txt
+    def save_time_step(self):
+        return
+
+    # for each time step draw the graph and save the data
+    def non_so_come_chiamarla(self):
+
+        # plot only  small graph
+        if len(self.graph_labelled) < 3000:
+            self.plot_graph()
+        
+        # save data about time step
+        self.save_time_step()
+
+
+    # plot the epidemic curves
+    def plot_curve(self):
+        return 
 
     # algorithm stops when all nodes are in R state
     # return true if all nodes are in state R
@@ -148,18 +183,7 @@ class SIR:
 
         return node_list
 
-    # from recovered to susceptible 
-    # return True if the node is now Susceptible
-    #def R_to_S(self, node):
-
-        #if self.graph_labelled.nodes[node][self.state_label] != Labels.R:
-            #return False
-
-        # transition state from R to S
-        #map_attr = { node : { self.state_label : Labels.S , self.Ti_label : 0 }}        
-        #nx.set_node_attributes(self.graph_labelled, map_attr)
-
-        #return True
+   
 
     # change the state into new_state and Ti into new_Ti for all node in node_list
     def change_state(self, node_list, new_state, new_Ti):
@@ -173,21 +197,25 @@ class SIR:
         
         # init the graph
         self.init_graph()
+
+        # plot the time zero: no infection
+        self.non_so_come_chiamarla()
         
+        self.time_step += 1
+
         # init the nodes
         self.infect_initial_nodes()
 
-        # plot the first time step
-        self.plot_graph()
+        # plot the first time step: start the contagion
+        self.non_so_come_chiamarla()
         
-        self.time_step = 2
+        self.time_step += 1
     
         
         while not self.convergence_test(): 
             
             new_recovered_list = []
             new_infected_list = []
-            new_susceptible_list = []
             
             for infected in self.current_infected_list:
                 is_recovered = self.I_to_R(infected)
@@ -205,13 +233,6 @@ class SIR:
             for infected in self.current_infected_list:
                 new_infected_list  +=  self.S_to_I(infected)
                 
-            # Transition from R to S
-            #for recovered in self.current_recovered_list:
-                #is_susceptible = self.R_to_S(recovered)
-
-                # if it's not recovered anymore it is removed from current_recovered
-                #if is_susceptible:
-                    #new_susceptible_list.append(recovered)
 
             # TRANSITIONS
 
@@ -220,15 +241,16 @@ class SIR:
             self.change_state(new_infected_list, Labels.I, self.Ti)
 
             # from R to S, remove from the list
-            #self.change_state(new_susceptible_list, Labels.S, 0)
             self.current_recovered_list += new_recovered_list
 
-            #self.current_recovered_list = list( set(self.current_recovered_list) - set(new_susceptible_list))
 
             # at the end of the transition...plot
-            self.plot_graph()
+            self.non_so_come_chiamarla()
 
             self.time_step = self.time_step + 1
+        
+        # at the end of the simulation plot and save epidemic curve
+        self.plot_curve()
 
 
 if __name__ == "__main__":

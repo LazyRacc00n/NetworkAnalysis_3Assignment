@@ -387,11 +387,7 @@ if __name__ == "__main__":
     print(k)
 
     # R < 1
-<<<<<<< Updated upstream
-    p = 0.02
-=======
     p = 0.01
->>>>>>> Stashed changes
     R = k * p
     print("R = ", R)
     model = SIR(G, p, 0.2, 15, 1, "Facebook_R_smaller_1" )

@@ -186,7 +186,7 @@ class SIR:
             f.write(str(self.time_step) + "," + str(num_S) + "," + str(num_R) + "," + str(num_I) + "\n" )
 
     # plot the epidemic curves
-    def plot_curve(self):
+    def plot_curve(self, every_nth=5):
 
         # total number of nodes
         n = len(self.graph_labelled)
@@ -216,15 +216,14 @@ class SIR:
         
         ax = plt.gca()  
 
-        every_nth = 2
+  
         for n, label in enumerate(ax.xaxis.get_ticklabels()):
             
-            if n % every_nth != 0:
+            if n % 2 != 0:
                 label.set_visible(False)
             
-            if n == len(time_list)-1:
-                label.set_visible(True)
-            label.set
+    
+        ax.xaxis.set_ticks( ticks= list(np.arange(0, len(time_list)-1, every_nth)) )
               
        
         plt.title(self.name_experiment)
@@ -232,7 +231,7 @@ class SIR:
         plt.ylabel('Relative number of nodes')
         plt.legend()
 
-        plt.xticks(fontsize=7)
+        plt.xticks(fontsize=6)
         plt.savefig(os.path.join(IMAGES_FOLDER, self.name_experiment,  "curves.png"))
         
 

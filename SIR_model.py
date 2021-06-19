@@ -92,6 +92,7 @@ class SIR:
         self.i_0 = i_0 # number of individuals initially infected
         self.current_infected_list = [] # list of infected
         self.current_recovered_list = [] # list of recovered
+
         
         self.graph = graph # networkx graph
         self.graph_labelled = None # graph used to process the model (a copy of graph)
@@ -239,7 +240,10 @@ class SIR:
     # return True if the node recovered
     def I_to_R(self, node):
 
-        if self.graph_labelled.nodes[node][self.Ti_label] > 0:
+        if self.graph_labelled.nodes[node][self.state_label] != Labels.I:
+            return None
+
+        if self.graph_labelled.nodes[node][self.Ti_label] > 0 :
             self.graph_labelled.nodes[node][self.Ti_label] -= 1
             return False
             
@@ -322,8 +326,9 @@ class SIR:
             # TRANSITION
             # from I to R, remove from the list
             self.change_state(new_recovered_list, Labels.R, 0)
-            self.current_infected_list = list( filter(lambda node: node not in new_recovered_list, self.current_infected_list) )
             self.current_recovered_list += new_recovered_list
+            self.current_infected_list = list( filter(lambda node: node not in new_recovered_list, self.current_infected_list) )
+            
 
             # the list is updated...if a node is Recovered in the previuos for cicle it cannot spread the contagion
             for infected in self.current_infected_list:
@@ -336,6 +341,7 @@ class SIR:
             self.current_infected_list += new_infected_list
             self.change_state(new_infected_list, Labels.I, self.Ti)
 
+            print(self.current_infected_list)
             # at the end of the transition...plot
             self.process_time_step()
 

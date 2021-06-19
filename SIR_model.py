@@ -213,12 +213,25 @@ class SIR:
         plt.plot(time_list, R_list, label="Recovered", c=Labels.R_color)
         plt.plot(time_list, I_list, label="Infected", c=Labels.I_color)
 
+        
+        ax = plt.gca()  
+
+        every_nth = 2
+        for n, label in enumerate(ax.xaxis.get_ticklabels()):
+            if n % every_nth != 0:
+                label.set_visible(False)  
+              
+       
+        
+      
         plt.title(self.name_experiment)
         plt.xlabel('Time')
         plt.ylabel('Relative number of nodes')
         plt.legend()
 
+
         plt.savefig(os.path.join(IMAGES_FOLDER, self.name_experiment,  "curves.png"))
+        
 
         plt.clf()
 

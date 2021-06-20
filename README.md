@@ -11,6 +11,12 @@ The SIR model simplify the mathematical modeling of infectious diseases. We have
 - **Infectious (I)**. Contagious individuals who have contacted the virus and hence they can infects other individuals.
 - **Recovered (R)**. Individuals who have recovered from the disease, not more infectious.
 
+In this model there are several parameters:
+
+- The **disease transmission probability p**, which defines the probability of an individual being infected.
+- <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/>, which represent minimum amount of time steps, of an individual, in the state **I ( infectious)**. After these time steps, an Individual could pass from the state I to the state R (recovered) with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/>.
+- The number of individual, which are infected at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0}"/> .
+
 ### Karate Club Graph
 
 Tante cose belle

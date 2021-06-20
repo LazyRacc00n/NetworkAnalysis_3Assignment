@@ -4,7 +4,13 @@
 <h5 style="text-align: right">Jacopo Dapueto s4345255 </h5>
 
 </br></br>
-In this assignement we have mapped the SIR model into a network. First, the SIR model has been applied to a small netwtork, *Karate Club Graph*, then, it is applied with a large network,*Facebook Circles*, that is the one of the other assignements.
+In this assignment we have mapped the **SIR model** into a network. First, the SIR model has been applied to a small network, *Karate Club Graph*, then, it is applied with a large network,*Facebook Circles*, that is the one of the other assignments.
+The SIR model simplify the mathematical modeling of infectious diseases. We have 3 different states:
+
+- **Susceptible (S)**. The healthy individuals, who have not yet contacted the virus.
+- **Infectious (I)**. Contagious individuals who have contacted the virus and hence they can infects other individuals.
+- **Recovered (R)**. Individuals who have recovered from the disease, not more infectious.
+
 ### Karate Club Graph
 
 Tante cose belle

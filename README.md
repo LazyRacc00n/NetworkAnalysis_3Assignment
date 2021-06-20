@@ -22,7 +22,9 @@ For the smaller network ( Karate Club ), we have build also a gif, which shows t
 
 ### Karate Club Graph
 
-As already mentioned, the first network used to test the SIR model is the Karate Club graph. The model has been created with the disease transmission probability *p=0.1*, a minimum amount of time steps for the infected individuals <img src="https://latex.codecogs.com/svg.image?\inline&space;T_i&space;=&space;10"/>, the transition probability ( from I to R ) q=0.2, and only 1 infected individual at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;i_0"/>.
+As already mentioned, the first network used to test the SIR model is the Karate Club graph. The model has been created with the disease transmission probability *p=0.1*, a minimum amount of time steps for the infected individuals <img src="https://latex.codecogs.com/svg.image?\inline&space;T_i&space;=&space;10"/>, the transition probability ( from I to R ) *q=0.2*, and only 1 infected individual at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;i_0"/>.
+The graphic below shows the evolution of the fraction of nodes in the S,I,R. As you can notice, the number of susceptible individuals decrease rapidly, and hence there is a and then there is equally fast growth of the number of infected people. The curve of the infected individuals, then, grows until to achieve a maximum, after it the number of infected begin to decrease until they reach 0. At the moment when this degrowth begins, the number start to increase rapidly until to reach the total number of the individuals. This because the infected people gradually recover from the virus, and hence they will no longer be infected.
+This algorithm ends when all the individuals are in the state R, and therefore the virus has been eradicated.
 
 
 <figure align=center>

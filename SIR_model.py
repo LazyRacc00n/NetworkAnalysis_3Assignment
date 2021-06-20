@@ -1,8 +1,12 @@
 import matplotlib.pyplot as plt
+from matplotlib import animation
+from matplotlib.animation import FuncAnimation, PillowWriter
 import networkx as nx
 import collections
+from networkx.algorithms.tree.operations import join
 import numpy as np
 import random
+import imageio
 import os
 
 IMAGES_FOLDER = "images"
@@ -306,7 +310,25 @@ class SIR:
 
         nx.set_node_attributes(self.graph_labelled, map_attr)
 
+
+    def save_gif(self):
+        path_images = os.path.join("images", self.name_experiment)
+        img_list = os.listdir(path=path_images)
+        
+        img_list.remove("curves.png")
+        try:
+            img_list.remove("gif")
+        except ValueError:
+            
+            os.makedirs(os.path.join(path_images, "gif"))
+            
+         
+        img_list.sort( key=lambda x: int(x.split(".")[0]) )
+        images = [imageio.imread(os.path.join(path_images, img)) for img in img_list]
+        if len(images) > 0:
+            imageio.mimsave(os.path.join(path_images,"gif", "anim.gif"), images)
     
+
     def run(self):
         
         # init the graph
@@ -365,7 +387,9 @@ class SIR:
         # at the end of the simulation plot and save epidemic curve
         self.plot_curve()
 
+        self.save_gif()
         print("SIMULATION END "  + self.name_experiment)
+
 
 
 if __name__ == "__main__":

@@ -17,6 +17,8 @@ In this model there are several parameters:
 - <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/>, which represent minimum amount of time steps, of an individual, in the state **I ( infectious)**. After these time steps, an Individual could pass from the state I to the state R (recovered) with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/>.
 - The number of individual, which are infected at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0}"/> .
 
+We ran the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model.
+
 ### Karate Club Graph
 
 Tante cose belle

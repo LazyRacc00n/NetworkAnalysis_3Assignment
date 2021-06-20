@@ -14,14 +14,16 @@ The SIR model simplify the mathematical modeling of infectious diseases. We have
 In this model there are several parameters:
 
 - The **disease transmission probability p**, which defines the probability of an individual being infected.
-- <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/>, which represent minimum amount of time steps, of an individual, in the state **I ( infectious)**. After these time steps, an Individual could pass from the state I to the state R (recovered) with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/>.
+- <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/>, which represent minimum amount of time steps, of an individual, in the state *I ( infectious)*. After these time steps, an Individual could pass from the state *I* to the state *R (recovered)* with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/>.
 - The number of individual, which are infected at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0}"/> .
 
-We ran the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model.
+Therefore we plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
+For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
 ### Karate Club Graph
 
-Tante cose belle
+As already mentioned, the first network used to test the SIR model is the Karate Club graph. The model has been created with the disease transmission probability *p=0.1*, a minimum amount of time steps for the infected individuals <img src="https://latex.codecogs.com/svg.image?\inline&space;T_i&space;=&space;10"/>, the transition probability ( from I to R ) q=0.2, and only 1 infected individual at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;i_0"/>.
+
 
 <figure align=center>
     <img src="./images/Karate_club/curves.png" width="80%" height="80%">

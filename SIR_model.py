@@ -325,7 +325,7 @@ class SIR:
         img_list.sort( key=lambda x: int(x.split(".")[0]) )
         images = [imageio.imread(os.path.join(path_images, img)) for img in img_list]
         if len(images) > 0:
-            imageio.mimsave(os.path.join(path_images,"gif", "anim.gif"), images, duration=1 )
+            imageio.mimsave(os.path.join(path_images,"gif", "anim.gif"), images, duration=0.7 )
     
 
     def run(self):

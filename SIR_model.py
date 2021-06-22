@@ -220,8 +220,12 @@ class SIR:
             pos = pickle.load(file)
 
        
-        nx.draw(self.graph_labelled, node_color=color_map,
-                    with_labels=False, pos=pos, edge_color="lightgray")
+        if self.name_experiment.split("_")[0] == "Facebook":
+            nx.draw(self.graph_labelled, node_color=color_map,
+                        with_labels=False, pos=pos, edge_color="gray", node_size=100, width=0.5)
+        else:
+             nx.draw(self.graph_labelled, node_color=color_map,
+                        with_labels=False, pos=pos, edge_color="gray", width=0.5)
 
         plt.savefig(os.path.join(IMAGES_FOLDER,
                                  self.name_experiment, str(self.time_step) + ".png"))
@@ -245,6 +249,7 @@ class SIR:
     # plot the epidemic curves
     def plot_curve(self, every_nth=5):
 
+        plt.figure()
         # total number of nodes
         n = len(self.graph_labelled)
 
@@ -388,7 +393,7 @@ class SIR:
         print("SIMULATION START: " + self.name_experiment)
         
         if self.name_experiment.split("_")[0] == "Facebook":
-            plt.figure(figsize=(40,40))
+            plt.figure(figsize=(25,25))
 
         # plot the time zero: no infection
         self.process_time_step()

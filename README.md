@@ -38,22 +38,32 @@ The gif below shows the evolution of the spread epidemic in the Karate Club netw
     <figcaption> <i> Figure 2 - Karate Club Graph, spread epidemics animation - SIR model </i> </figcaption>
 </figure>
 
-We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R&space;=&space;p*k"/>, that is the **basic reproduction number**, which is the expected number of new cases caused by a single infected individual, and where *k* is the number of individuals that everyone meet.
+We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R&space;=&space;p*k"/>, that is the **basic reproduction number**, which is the expected number of new cases caused by a single infected individual, and where *k* is the number of individuals that everyone meet, and it is obtained computing the mean degree of the network. Hence knowing the mean degree *k* and fixing R, it is possible get the probability*p*.
+All the following experiments are executed with the parameters:
+
+| *R*  | *K*  |  *p*   |  *q* | *i0*| *T0*  |
+|---   |---   |---     |---   |---  | ---   |
+| 0.45 | 4.58 | 0.015  | 0.2  |  1  |  15   |
+|  1   | 4.58 | 1/4.58 | 0.2  |  1  |  15   |
+| 1.376| 4.58 |  0.05  | 0.2  |  1  |  15   |
+
+
+
 So, we have tested the model considering 3 different cases:
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This, as showed by the graphic below, is the best case, because when *R < 1* the disease dies out faster. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This, as showed by the graphic below, is the best case, because when *R < 1* the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.
 
 <figure align=center>
     <img src="./images/Karate_club_smaller_1/curves.png" width="80%" height="80%">
 </figure>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. This is the *endemic* regime, where, respect to the previous case, there is a fester increase of infections at the beginning, reaching quickly the 100% of individuals infected. Respect to the previous case, the number of total infected remains at its maximum remains stable for some time steps and and doesn't immediately start to decrease.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. This is the *endemic* regime, where, respect to the previous case, there is a fester increase of infections at the beginning, reaching quickly the 100% of individuals infected, because everyone infect one people. Respect to the previous case, the number of total infected remains at its maximum remains stable for some time steps and and doesn't immediately start to decrease.
   
 <figure align=center>
     <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" >
 </figure>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />. This is the *epidemic* regime
 
 <figure align=center>
     <img src="./images/Karate_club_greater_1/curves.png" width="80%" height="80%">

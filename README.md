@@ -20,6 +20,27 @@ In this model there are several parameters:
 Therefore we plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
+We performed some experiments changing the parameter of the SIR model:
+
+- **R = 1**
+
+<figure align=center>
+    <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" >
+</figure>
+
+- **R > 1**
+
+<figure align=center>
+    <img src="./images/Karate_club_greater_1/curves.png" width="80%" height="80%">
+</figure>
+
+- **R < 1**
+
+<figure align=center>
+    <img src="./images/Karate_club_smaller_1/curves.png" width="80%" height="80%">
+
+</figure>
+
 ### Karate Club Graph
 
 As already mentioned, the first network used to test the SIR model is the Karate Club graph. The model has been created with the disease transmission probability *p=0.1*, a minimum amount of time steps for the infected individuals <img src="https://latex.codecogs.com/svg.image?\inline&space;T_i&space;=&space;10"/>, the transition probability ( from I to R ) *q=0.2*, and only 1 infected individual at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;i_0"/>.

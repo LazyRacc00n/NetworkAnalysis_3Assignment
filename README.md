@@ -20,27 +20,29 @@ In this model there are several parameters:
 Therefore we plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
-We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R_0&space;=&space;p*k"/> 
-which is the reproductive number. It provides the number of individuals an infected individual infects if all of its contacts are susceptible.
+We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R&space;=&space;p*k"/>, that is the **basic reproduction number**, which is the expected number of new cases caused by a single infected individual, and where *k* is the number of individuals that everyone meet.
+So, we have tested the model considering 3 different cases:
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R_0&space;=&space;1}" title="\mathbf{R_0 = 1}" />
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />
+
+<figure align=center>
+    <img src="./images/Karate_club_smaller_1/curves.png" width="80%" height="80%">
+</figure>
+
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />
+  
 
 <figure align=center>
     <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" >
 </figure>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R_0&space;>&space;1}" title="\mathbf{R_0 > 1}" />
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />
 
 <figure align=center>
     <img src="./images/Karate_club_greater_1/curves.png" width="80%" height="80%">
 </figure>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R_0&space;<&space;1}" title="\mathbf{R_0 < 1}" />
 
-<figure align=center>
-    <img src="./images/Karate_club_smaller_1/curves.png" width="80%" height="80%">
-
-</figure>
 
 ### Karate Club Graph
 
@@ -65,19 +67,19 @@ Altre cose belle
 
 We performed some experiments changing the parameter of the SIR model:
 
-- **R = 1**
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R_0 = 1}" />
 
 <figure align=center>
     <img src="./images/Facebook_R_equal_1/curves.png" width="80%" height="80%" >
 </figure>
 
-- **R > 1**
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />
 
 <figure align=center>
     <img src="./images/Facebook_R_greater_1/curves.png" width="80%" height="80%">
 </figure>
 
-- **R < 1**
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />
 
 <figure align=center>
     <img src="./images/Facebook_R_smaller_1/curves.png" width="80%" height="80%">

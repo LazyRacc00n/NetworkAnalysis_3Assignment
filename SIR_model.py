@@ -140,6 +140,7 @@ class SIR:
                         self.name_experiment+" termianted.")
                     pickle.dump(pos, open(os.path.join(
                         DATA_FOLDER, "Karate_Club_Config", "karate_club_cfg.pkl"), 'wb'))
+         
 
     def create_folders(self):
 
@@ -218,8 +219,9 @@ class SIR:
         with open(path_cfg, 'rb') as file:
             pos = pickle.load(file)
 
+       
         nx.draw(self.graph_labelled, node_color=color_map,
-                with_labels=False, pos=pos)
+                    with_labels=False, pos=pos, edge_color="lightgray")
 
         plt.savefig(os.path.join(IMAGES_FOLDER,
                                  self.name_experiment, str(self.time_step) + ".png"))
@@ -384,6 +386,9 @@ class SIR:
         self.init_graph()
 
         print("SIMULATION START: " + self.name_experiment)
+        
+        if self.name_experiment.split("_")[0] == "Facebook":
+            plt.figure(figsize=(40,40))
 
         # plot the time zero: no infection
         self.process_time_step()

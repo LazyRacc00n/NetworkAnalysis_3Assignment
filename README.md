@@ -17,6 +17,8 @@ In this model there are several parameters:
 - <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/>, which represent minimum amount of time steps, of an individual, in the state *I ( infectious)*. After these time steps, an Individual could pass from the state *I* to the state *R (recovered)* with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/>.
 - The number of individual, which are infected at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0}"/> .
 
+At the beginning all the nodes are initialized to *S*, 
+
 Therefore we plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
@@ -39,17 +41,14 @@ The gif below shows the evolution of the spread epidemic in the Karate Club netw
 </figure>
 
 We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R&space;=&space;p*k"/>, that is the **basic reproduction number**, which is the expected number of new cases caused by a single infected individual, and where *k* is the number of individuals that everyone meet, and it is obtained computing the mean degree of the network. Hence knowing the mean degree *k* and fixing R, it is possible get the probability*p*.
-All the following experiments are executed with the parameters:
 
-| *R*  | *K*  |  *p*   |  *q* | *i0*| *T0*  |
-|---   |---   |---     |---   |---  | ---   |
-| 0.45 | 4.58 | 0.015  | 0.2  |  1  |  15   |
-|  1   | 4.58 | 1/4.58 | 0.2  |  1  |  15   |
-| 1.376| 4.58 |  0.05  | 0.2  |  1  |  15   |
+So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1, using this parameters:
 
-
-
-So, we have tested the model considering 3 different cases:
+| *R*   | *K*   |  *p*   |  *q*  | *i0*  | *T0*  |
+|  ---  |  ---  |  ---   |  ---  |  ---  |  ---  |
+| 0.45  | 4.58  | 0.015  |  0.2  |  1    |  15   |
+|  1    | 4.58  | 1/4.58 |  0.2  |  1    |  15   |
+| 1.376 | 4.58  |  0.05  |  0.2  |  1    |  15   |
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This, as showed by the graphic below, is the best case, because when *R < 1* the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.
 
@@ -70,6 +69,14 @@ So, we have tested the model considering 3 different cases:
 </figure>
 
 ### Facebook Circles
+
+<figure align=center>
+    <img src="images\Facebook_R_greater_1\gif\anim.gif" style="margin-left: auto; margin-right: auto;" ></img>
+    <figcaption> <i> Figure 2 - Karate Club Graph, spread epidemics animation - SIR model </i> </figcaption>
+</figure>
+
+
+
 
 We performed some experiments changing the parameter of the SIR model:
 

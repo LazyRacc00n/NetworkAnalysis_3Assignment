@@ -26,8 +26,6 @@ As already mentioned, the first network used to test the SIR model is the Karate
 The graph below shows the evolution of the fraction of nodes in S,I,R. As can be seen, the number of susceptible individuals decreases rapidly, and then there is an equally rapid growth in the number of infected individuals. The curve of infected individuals, therefore, grows until it reaches a maximum peak, after which the number of infected individuals begins to decrease until it disappears. The moment this decrease begins, the number begins to increase rapidly until it reaches the total number of individuals. This is because the infected individuals gradually recover from the virus, and thus will no longer be infected.
 This algorithm ends when all individuals are in the R state, and thus the virus has been eradicated.
 
-
-
 <figure align=center>
     <img src="./images/Karate_club/curves.png" width="80%" height="80%">
     <figcaption> <i> Figure 1 - Karate Club Graph </i> </figcaption>
@@ -63,5 +61,3 @@ We performed some experiments changing the parameter of the SIR model:
     <img src="./images/Facebook_R_smaller_1/curves.png" width="80%" height="80%">
 
 </figure>
-
-

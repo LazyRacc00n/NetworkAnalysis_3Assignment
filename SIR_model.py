@@ -8,10 +8,11 @@ import numpy as np
 import random
 import imageio
 import os
+import shutil
 
 IMAGES_FOLDER = "images"
 DATA_FOLDER = "data"
-MAX_NODE_DRAW = 3000
+MAX_NODE_DRAW = 5000
 class Labels:
     S = "Susceptible"
     I = "Infected"
@@ -114,13 +115,24 @@ class SIR:
 
         # save layout for draw
         if len(self.graph) < MAX_NODE_DRAW:
+            print("Starting plot configuration for "+self.name_experiment+"...")
             self.pos = nx.kamada_kawai_layout(self.graph)
+            print("Configuration for "+self.name_experiment+" termianted.")
 
         # create folders to store data
         self.create_folders()
             
     
     def create_folders(self):
+
+        if os.path.isdir(os.path.join(IMAGES_FOLDER,self.name_experiment)):
+            print("Removing existing IMAGES folder of experiment: "+self.name_experiment)
+            shutil.rmtree(os.path.join(IMAGES_FOLDER,self.name_experiment))
+
+        if os.path.isdir(os.path.join(DATA_FOLDER,self.name_experiment)):
+            print("Removing existing DATA folder of experiment: "+self.name_experiment)
+            shutil.rmtree(os.path.join(DATA_FOLDER, self.name_experiment))
+
         # create the dir for the images if they not exists
         if not os.path.isdir(IMAGES_FOLDER):
             os.mkdir(IMAGES_FOLDER)
@@ -398,6 +410,36 @@ if __name__ == "__main__":
     model = SIR(G, 0.1, 0.2, 10, 1, "Karate_club" )
     model.run()
    
+    # expected number of links of a node
+    degree = [d for n,d in G.degree()]
+    degreeCount = collections.Counter(degree)
+    deg, cnt = zip(*degreeCount.items())
+    deg= np.array(deg) # degree 
+    cnt = np.array(cnt) # counts per degree
+    k = np.average(deg, weights = cnt/cnt.sum())
+    print("Expected degree: ", k)
+
+    # R < 1
+    p = 0.1
+    R = k * p
+    print("R = ", R)
+    model = SIR(G, p, 0.2, 15, 1, "Karate_club_smaller_1" )
+    model.run()
+
+    # R = 1
+    p = 1/k
+    R = k * p
+    print("R = ", R)
+    model = SIR(G, p, 0.2, 15, 1, "Karate_club_equal_1" )
+    model.run()
+
+    # R > 1
+    p = 0.3
+    R = k * p
+    print("R = ", R)
+    model = SIR(G, p, 0.2, 15, 1, "Karate_club_greater_1" )
+    model.run()
+
     # experiment with facebook dataset
     G = load_dataset()
 
@@ -419,14 +461,14 @@ if __name__ == "__main__":
     model.run()
 
     # R = 1
-    p = 1/43.69
+    p = 1/k
     R = k * p
     print("R = ", R)
     model = SIR(G, p, 0.2, 15, 1, "Facebook_R_equal_1" )
     model.run()
 
     # R > 1
-    p = 0.03
+    p = 0.05
     R = k * p
     print("R = ", R)
     model = SIR(G, p, 0.2, 15, 1, "Facebook_R_greater_1" )

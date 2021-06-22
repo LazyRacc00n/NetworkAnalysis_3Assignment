@@ -23,19 +23,19 @@ For the smaller network ( Karate Club ), we have build also a gif, which shows t
 We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R_0&space;=&space;p*k"/> 
 which is the reproductive number. It provides the number of individuals an infected individual infects if all of its contacts are susceptible.
 
-- <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{R_0 = 1}"/>
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R_0&space;=&space;1}" title="\mathbf{R_0 = 1}" />
 
 <figure align=center>
     <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" >
 </figure>
 
-- **R > 1**
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R_0&space;>&space;1}" title="\mathbf{R_0 > 1}" />
 
 <figure align=center>
     <img src="./images/Karate_club_greater_1/curves.png" width="80%" height="80%">
 </figure>
 
-- **R < 1**
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R_0&space;<&space;1}" title="\mathbf{R_0 < 1}" />
 
 <figure align=center>
     <img src="./images/Karate_club_smaller_1/curves.png" width="80%" height="80%">

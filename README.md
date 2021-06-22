@@ -19,7 +19,7 @@ In this model there are several parameters:
 
 Once all the previous parameters are set, all the nodes are initialized to *S* (no one infected ). Then, the algorithm is executed until convergence, i.e., until all the individuals are in the state *R*: for each infected node are checked the neighbors, a random number is sampled, and if the result is less than *p*, a contagion occurs and those neighbor is moved to the state I. Then, if for an infected  node, a minimum of <img src="https://latex.codecogs.com/svg.image?\inline&space;T_i"/> time steps have elapsed, it is moved to the state *R* with probability *q*.
 
-Hence we have plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
+Hence, we have plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
 ### Karate Club Graph
@@ -70,15 +70,9 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
 
 ### Facebook Circles
 
-<figure align=center>
-    <img src="images\Facebook_R_greater_1\gif\anim.gif" style="margin-left: auto; margin-right: auto;" ></img>
-    <figcaption> <i> Figure 2 - Karate Club Graph, spread epidemics animation - SIR model </i> </figcaption>
-</figure>
+The model has been tested in the real network, Facebook Circles, repeating also the experiments performed with the smaller one. The evolution of the spread epidemic, in this kind of network, is showed in the below animation
 
 
-
-
-We performed some experiments changing the parameter of the SIR model:
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R_0 = 1}" />
 

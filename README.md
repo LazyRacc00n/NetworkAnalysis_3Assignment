@@ -20,9 +20,10 @@ In this model there are several parameters:
 Therefore we plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
-We performed some experiments changing the parameter of the SIR model:
+We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R_0&space;=&space;p*k"/> 
+which is the reproductive number. It provides the number of individuals an infected individual infects if all of its contacts are susceptible.
 
-- **R = 1**
+- <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{R_0 = 1}"/>
 
 <figure align=center>
     <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" >

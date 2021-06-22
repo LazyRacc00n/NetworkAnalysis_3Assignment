@@ -62,7 +62,7 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
     <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" >
 </figure>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />. This is the *epidemic* regime
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />. This is the *epidemic* regime, and it is the worst case. Here every one infects more than one people. For this reason, we have a exponential growth, rapidly leading to the entire population becoming infected. All the population remain infected for a large amount of time steps, then the curve starts the degrowth.
 
 <figure align=center>
     <img src="./images/Karate_club_greater_1/curves.png" width="80%" height="80%">

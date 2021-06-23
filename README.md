@@ -3,9 +3,6 @@
 <h5 style="text-align: right">Simone Campisi s4341240 </h5>
 <h5 style="text-align: right">Jacopo Dapueto s4345255 </h5>
 
-
-
-
 </br></br>
 In this assignment we have mapped the **SIR model** into a network. First, the SIR model has been applied to a small network, *Karate Club Graph*, then, it is applied with a large network,*Facebook Circles*, that is the one of the other assignments.
 The SIR model simplify the mathematical modeling of infectious diseases. We have 3 different states:
@@ -75,6 +72,11 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
 
 The model has been tested in the real network, Facebook Circles, repeating also the experiments performed with the smaller one. The evolution of the spread epidemic, in this kind of network, is showed in the below animation
 
+
+<figure align=center>
+    <img src="./images/Facebook_R_greater_1/gif/anim.gif" width="80%" height="80%"/>
+    <figcaption> <i> Figure 2 - Facebook Circles - R > 1 </i> </figcaption>
+</figure>
 
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R_0 = 1}" />

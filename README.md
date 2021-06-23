@@ -4,7 +4,7 @@
 <h5 style="text-align: right">Jacopo Dapueto s4345255 </h5>
 
 
-<img src="images/Facebook_R_equal_1/0.png">
+
 
 </br></br>
 In this assignment we have mapped the **SIR model** into a network. First, the SIR model has been applied to a small network, *Karate Club Graph*, then, it is applied with a large network,*Facebook Circles*, that is the one of the other assignments.

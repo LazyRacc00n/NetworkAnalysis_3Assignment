@@ -29,14 +29,14 @@ The graph below shows the evolution of the fraction of nodes in S,I,R. As can be
 This algorithm ends when all individuals are in the R state, and thus the virus has been eradicated.
 
 <figure align=center>
-    <img src="./images/Karate_club/curves.png" width="80%" height="80%">
+    <img src="./images/Karate_club/curves.png" width="80%" height="80%"/>
     <figcaption> <i> Figure 1 - Karate Club Graph </i> </figcaption>
 </figure>
 
 The gif below shows the evolution of the spread epidemic in the Karate Club network.
 
 <figure align=center>
-    <img src="./images/Karate_club/gif/anim.gif" style="margin-left: auto; margin-right: auto;" ></img>
+    <img src="./images/Karate_club/gif/anim.gif" style="margin-left: auto; margin-right: auto;" />
     <figcaption> <i> Figure 2 - Karate Club Graph, spread epidemics animation - SIR model </i> </figcaption>
 </figure>
 
@@ -53,19 +53,19 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This, as showed by the graphic below, is the best case, because when *R < 1* the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.
 
 <figure align=center>
-    <img src="./images/Karate_club_smaller_1/curves.png" width="80%" height="80%">
+    <img src="./images/Karate_club_smaller_1/curves.png" width="80%" height="80%"/>
 </figure>
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. This is the *endemic* regime, where, respect to the previous case, there is a fester increase of infections at the beginning, reaching quickly the 100% of individuals infected, because everyone infect one people. Respect to the previous case, the number of total infected remains at its maximum remains stable for some time steps and and doesn't immediately start to decrease.
   
 <figure align=center>
-    <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" >
+    <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" />
 </figure>
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />. This is the *epidemic* regime, and it is the worst case. Here every one infects more than one people. For this reason, we have a exponential growth, rapidly leading to the entire population becoming infected. All the population remain infected for a large amount of time steps, then the curve starts the degrowth.
 
 <figure align=center>
-    <img src="./images/Karate_club_greater_1/curves.png" width="80%" height="80%">
+    <img src="./images/Karate_club_greater_1/curves.png" width="80%" height="80%"/>
 </figure>
 
 ### Facebook Circles
@@ -77,7 +77,7 @@ The model has been tested in the real network, Facebook Circles, repeating also 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R_0 = 1}" />
 
 <figure align=center>
-    <img src="./images/Facebook_R_equal_1/curves.png" width="80%" height="80%" >
+    <img src="./images/Facebook_R_equal_1/curves.png" width="80%" height="80%" />
 </figure>
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />
@@ -89,6 +89,5 @@ The model has been tested in the real network, Facebook Circles, repeating also 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />
 
 <figure align=center>
-    <img src="./images/Facebook_R_smaller_1/curves.png" width="80%" height="80%">
-
+    <img src="./images/Facebook_R_smaller_1/curves.png" width="80%" height="80%"/>
 </figure>

@@ -29,14 +29,14 @@ The graph below shows the evolution of the fraction of nodes in S,I,R. As can be
 This algorithm ends when all individuals are in the R state, and thus the virus has been eradicated.
 
 <figure align=center>
-    <img src="https://github.com/LazyRacc00n/NetworkAnalysis_3Assignment/blob/main/images/Karate_club_smaller_1/curves.png" width="80%" height="80%">
+    <img src="./images/Karate_club/curves.png" width="80%" height="80%">
     <figcaption> <i> Figure 1 - Karate Club Graph </i> </figcaption>
 </figure>
 
 The gif below shows the evolution of the spread epidemic in the Karate Club network.
 
 <figure align=center>
-    <img src="images/Karate_club/gif/anim.gif" style="margin-left: auto; margin-right: auto;" ></img>
+    <img src="./images/Karate_club/gif/anim.gif" style="margin-left: auto; margin-right: auto;" ></img>
     <figcaption> <i> Figure 2 - Karate Club Graph, spread epidemics animation - SIR model </i> </figcaption>
 </figure>
 

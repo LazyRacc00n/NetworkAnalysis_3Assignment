@@ -79,6 +79,15 @@ The model has been tested  the real network, Facebook Circles, repeating also th
 </figure>
 
 
+ Also for this network we have repeated the experiments testing the model in the 3 different cases, R < 1, R = 1, R > 1. The parameters chosen are similar to the one used for the Karate Club, in fact, are all the same except for the 
+
+| *R*   | *K*   |  *p*    |  *q*  | *i0*  | *T0*  |
+|  ---  |  ---  |  ---    |  ---  |  ---  |  ---  |
+| 0.655 | 43.69 |  0.015  |  0.2  |   1   |  15   |
+|  1    | 43.69 | 1/43.69 |  0.2  |   1   |  15   |
+| 2.184 | 43.69 |  0.05   |  0.2  |   1   |  15   |
+
+
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R_0 = 1}" />
 
 <figure align=center>

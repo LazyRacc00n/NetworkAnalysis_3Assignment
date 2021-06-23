@@ -70,11 +70,11 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
 
 ### Facebook Circles
 
-The model has been tested in the real network, Facebook Circles, repeating also the experiments performed with the smaller one. The evolution of the spread epidemic, in this kind of network, is showed in the below animation
+The model has been tested  the real network, Facebook Circles, repeating also the experiments performed with the smaller one. The evolution of the spread epidemic, in this kind of network, is showed in the below animation
 
 
 <figure align=center>
-    <img src="./images/Facebook_R_greater_1/gif/anim.gif" width="80%" height="80%"/>
+    <img src="./Facebook_anim.gif" width="80%" height="80%"/>
     <figcaption> <i> Figure 2 - Facebook Circles - R > 1 </i> </figcaption>
 </figure>
 

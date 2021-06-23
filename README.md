@@ -79,7 +79,7 @@ The model has been tested  the real network, Facebook Circles, repeating also th
 </figure>
 
 
- Also for this network we have repeated the experiments testing the model in the 3 different cases, R < 1, R = 1, R > 1. The parameters chosen are similar to the one used for the Karate Club, in fact, are all the same except for the 
+ Also for this network we have repeated the experiments testing the model in the 3 different cases, R < 1, R = 1, R > 1. The parameters chosen are similar to the one used for the Karate Club, in fact, are all the same except for the parameter *p*, which choice depends on *k* being much larger. The parameters are reported in the following table:
 
 | *R*   | *K*   |  *p*    |  *q*  | *i0*  | *T0*  |
 |  ---  |  ---  |  ---    |  ---  |  ---  |  ---  |
@@ -87,21 +87,25 @@ The model has been tested  the real network, Facebook Circles, repeating also th
 |  1    | 43.69 | 1/43.69 |  0.2  |   1   |  15   |
 | 2.184 | 43.69 |  0.05   |  0.2  |   1   |  15   |
 
+</br>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R_0 = 1}" />
+
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R < 1}" />.In this case we have a not too fast growth of infections, and here we have at maximum the 60% of population infected, and after this peak the number of infections decreases rapidly, so, as in the case of the Karate club, with *R < 1* the spread epidemic is contained.
+
+<figure align=center>
+    <img src="./images/Facebook_R_smaller_1/curves.png" width="80%" height="80%"/>
+</figure>
+
+
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. Here, the growth of the contagion curve is a little faster than in the previous case, and reaches its peak, more or less, at 65% of the population.
 
 <figure align=center>
     <img src="./images/Facebook_R_equal_1/curves.png" width="80%" height="80%" />
 </figure>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R > 1}" />. As in the case of the Karate Club network, this is the worst case. In fact, observing the graphic, you can notice that the growth of the infected individuals is much faster than the previous case, reaching in few time steps, the 80% of the population infected. Also here, after the peak of the contagions the curve starts the decrease, with a consequent increase of the recovered individuals.
 
 <figure align=center>
     <img src="./images/Facebook_R_greater_1/curves.png" width="80%" height="80%">
 </figure>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />
-
-<figure align=center>
-    <img src="./images/Facebook_R_smaller_1/curves.png" width="80%" height="80%"/>
-</figure>

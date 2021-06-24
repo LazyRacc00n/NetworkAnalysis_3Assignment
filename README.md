@@ -55,8 +55,8 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
 
 
 <figure class="left" style="display: inline-block;">
-  <img src="./images/Karate_club_smaller_1/curves.png" height="40%" width="40%"/>
-<img src="./images/Karate_club_smaller_1/gif/anim.gif" height="40%" width="40%"/>
+<img src="./images/Karate_club_smaller_1/curves.png" height="30%" width="30%"/>
+<img src="./images/Karate_club_smaller_1/gif/anim.gif" height="30%" width="30%"/>
 </figure>
 
 

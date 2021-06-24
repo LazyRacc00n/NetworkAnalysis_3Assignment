@@ -279,43 +279,144 @@ The SIR model simplify the mathematical modeling of infectious diseases. We have
 <li><img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{T_i}">, which represent minimum amount of time steps, of an individual, in the state <em>I ( infectious)</em>. After these time steps, an Individual could pass from the state <em>I</em> to the state <em>R (recovered)</em> with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{q}">.</li>
 <li>The number of individual, which are infected at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{i_0}"> .</li>
 </ul>
-<p>Therefore we plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.<br>
+<p>Once all the previous parameters are set, all the nodes are initialized to <em>S</em> (no one infected ). Then, the algorithm is executed until convergence, i.e., until all the individuals are in the state <em>R</em>: for each infected node are checked the neighbors, a random number is sampled, and if the result is less than <em>p</em>, a contagion occurs and those neighbor is moved to the state I. Then, if for an infected  node, a minimum of <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;T_i"> time steps have elapsed, it is moved to the state <em>R</em> with probability <em>q</em>.</p>
+<p>Hence, we have plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.<br>
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.</p>
 <h3 class="mume-header" id="karate-club-graph">Karate Club Graph</h3>
 
 <p>As already mentioned, the first network used to test the SIR model is the Karate Club graph. The model has been created with the disease transmission probability <em>p=0.1</em>, a minimum amount of time steps for the infected individuals <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;T_i&amp;space;=&amp;space;10">, the transition probability ( from I to R ) <em>q=0.2</em>, and only 1 infected individual at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;i_0">.<br>
 The graph below shows the evolution of the fraction of nodes in S,I,R. As can be seen, the number of susceptible individuals decreases rapidly, and then there is an equally rapid growth in the number of infected individuals. The curve of infected individuals, therefore, grows until it reaches a maximum peak, after which the number of infected individuals begins to decrease until it disappears. The moment this decrease begins, the number begins to increase rapidly until it reaches the total number of individuals. This is because the infected individuals gradually recover from the virus, and thus will no longer be infected.<br>
 This algorithm ends when all individuals are in the R state, and thus the virus has been eradicated.</p>
-<figure align="center">
-    <img src="./images/Karate_club/curves.png" width="80%" height="80%">
-    <figcaption> <i> Figure 1 - Karate Club Graph </i> </figcaption>
-</figure>
-<p>Altre cose belle</p>
-<figure align="center">
-    <img src="images/Karate_club/gif/anim.gif" style="margin-left: auto; margin-right: auto;">
-    <figcaption> <i> Figure 2 - Karate Club Graph, spread epidemics animation - SIR model </i> </figcaption>
-</figure>
+<p>The gif below shows the evolution of the spread epidemic in the Karate Club network.</p>
+<table><tbody><tr>
+<td>  <img src="./images/Karate_club/curves.png"> </td>
+<td> <img src="./images/Karate_club/gif/anim.gif"> </td>
+</tr></tbody></table>
+<p>We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;R&amp;space;=&amp;space;p*k">, that is the <strong>basic reproduction number</strong>, which is the expected number of new cases caused by a single infected individual, and where <em>k</em> is the number of individuals that everyone meet, and it is obtained computing the mean degree of the network. Hence knowing the mean degree <em>k</em> and fixing R, it is possible get the probability<em>p</em>.</p>
+<p>So, we have tested the model considering 3 different cases, R &lt; 1, R = 1, R &gt; 1, using this parameters:</p>
+<table>
+<thead>
+<tr>
+<th><em>R</em></th>
+<th><em>K</em></th>
+<th><em>p</em></th>
+<th><em>q</em></th>
+<th><em>i0</em></th>
+<th><em>T0</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.45</td>
+<td>4.58</td>
+<td>0.015</td>
+<td>0.2</td>
+<td>1</td>
+<td>15</td>
+</tr>
+<tr>
+<td>1</td>
+<td>4.58</td>
+<td>1/4.58</td>
+<td>0.2</td>
+<td>1</td>
+<td>15</td>
+</tr>
+<tr>
+<td>1.376</td>
+<td>4.58</td>
+<td>0.05</td>
+<td>0.2</td>
+<td>1</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&lt;&amp;space;1}" title="\mathbf{R_0 &lt; 1}">. This, as showed by the graphic below, is the best case, because when <em>R &lt; 1</em> the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.</li>
+</ul>
+<table><tbody><tr>
+<td>  <img src="./images/Karate_club_smaller_1/curves.png"> </td>
+<td> <img src="./images/Karate_club_smaller_1/gif/anim.gif"> </td>
+</tr></tbody></table>
+<ul>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;=&amp;space;1}" title="\mathbf{R = 1}">. This is the <em>endemic</em> regime, where, respect to the previous case, there is a fester increase of infections at the beginning, reaching quickly the 100% of individuals infected, because everyone infect one people. Respect to the previous case, the number of total infected remains at its maximum remains stable for some time steps and and doesn&apos;t immediately start to decrease.</li>
+</ul>
+<table><tbody><tr>
+<td>  <img src="./images/Karate_club_equal_1/curves.png"> </td>
+<td> <img src="./images/Karate_club_equal_1/gif/anim.gif"> </td>
+</tr></tbody></table>
+<ul>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&gt;&amp;space;1}" title="\mathbf{R_0 &gt; 1}">. This is the <em>epidemic</em> regime, and it is the worst case. Here every one infects more than one people. For this reason, we have a exponential growth, rapidly leading to the entire population becoming infected. All the population remain infected for a large amount of time steps, then the curve starts the degrowth.</li>
+</ul>
+<table><tbody><tr>
+<td>  <img src="./images/Karate_club_greater_1/curves.png"> </td>
+<td> <img src="./images/Karate_club_greater_1/gif/anim.gif"> </td>
+</tr></tbody></table>
 <h3 class="mume-header" id="facebook-circles">Facebook Circles</h3>
 
-<p>We performed some experiments changing the parameter of the SIR model:</p>
+<p>The model has been tested  the real network, Facebook Circles, repeating also the experiments performed with the smaller one.<br>
+Also for this network we have repeated the experiments testing the model in the 3 different cases, R &lt; 1, R = 1, R &gt; 1. The parameters chosen are similar to the one used for the Karate Club, in fact, are all the same except for the parameter <em>p</em>, which choice depends on <em>k</em> being much larger. The parameters are reported in the following table:</p>
+<table>
+<thead>
+<tr>
+<th><em>R</em></th>
+<th><em>K</em></th>
+<th><em>p</em></th>
+<th><em>q</em></th>
+<th><em>i0</em></th>
+<th><em>T0</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.655</td>
+<td>43.69</td>
+<td>0.015</td>
+<td>0.2</td>
+<td>1</td>
+<td>15</td>
+</tr>
+<tr>
+<td>1</td>
+<td>43.69</td>
+<td>1/43.69</td>
+<td>0.2</td>
+<td>1</td>
+<td>15</td>
+</tr>
+<tr>
+<td>2.184</td>
+<td>43.69</td>
+<td>0.05</td>
+<td>0.2</td>
+<td>1</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<br>
 <ul>
-<li><strong>R = 1</strong></li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&lt;&amp;space;1}" title="\mathbf{R &lt; 1}">.In this case we have a not too fast growth of infections, and here we have at maximum the 60% of population infected, and after this peak the number of infections decreases rapidly, so, as in the case of the Karate club, with <em>R &lt; 1</em> the spread epidemic is contained.</li>
 </ul>
-<figure align="center">
-    <img src="./images/Facebook_R_equal_1/curves.png" width="80%" height="80%">
-</figure>
+<table><tbody><tr>
+<td>  <img src="./images/Facebook_R_smaller_1/curves.png" width="900"> </td>
+<td> <img src="./images/Facebook_R_smaller_1/gif/anim.gif"> </td>
+</tr></tbody></table>
 <ul>
-<li><strong>R &gt; 1</strong></li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;=&amp;space;1}" title="\mathbf{R = 1}">. Here, the growth of the contagion curve is a little faster than in the previous case, and reaches its peak, more or less, at 65% of the population.</li>
 </ul>
-<figure align="center">
-    <img src="./images/Facebook_R_greater_1/curves.png" width="80%" height="80%">
-</figure>
+<table><tbody><tr>
+<td>  <img src="./images/Facebook_R_equal_1/curves.png" width="900"> </td>
+<td> <img src="./images/Facebook_R_equal_1/gif/anim.gif"> </td>
+</tr></tbody></table>
 <ul>
-<li><strong>R &lt; 1</strong></li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&gt;&amp;space;1}" title="\mathbf{R &gt; 1}">. As in the case of the Karate Club network, this is the worst situation. In fact, observing the graphic, you can notice that the growth of the infected individuals is much faster than the previous case, reaching in few time steps, the 80% of the population infected. Also here, after the peak of the contagions the curve starts the decrease, with a consequent increase of the recovered individuals.</li>
 </ul>
-<figure align="center">
-    <img src="./images/Facebook_R_smaller_1/curves.png" width="80%" height="80%">
-</figure>
+<table><tbody><tr>
+<td>  <img src="./images/Facebook_R_greater_1/curves.png" width="900"> </td>
+<td> <img src="./images/Facebook_R_greater_1/gif/anim.gif"> </td>
+</tr></tbody></table>
 
       </div>
       

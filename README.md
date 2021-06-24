@@ -42,14 +42,13 @@ We performed some experiments changing the parameter of the SIR model. In partic
 
 So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1, using this parameters:
 
-| *R*   | *K*   |  *p*   |  *q*  | *i0*  | *T0*  |
-|  ---  |  ---  |  ---   |  ---  |  ---  |  ---  |
-| 0.45  | 4.58  | 0.015  |  0.2  |  1    |  15   |
-|  1    | 4.58  | 1/4.58 |  0.2  |  1    |  15   |
-| 1.376 | 4.58  |  0.05  |  0.2  |  1    |  15   |
+| *R*   | *< K >*   |  *p*       |  *q*  | *i0*  | *T0*  |
+|  ---  |    ---    |  ---       |  ---  |  ---  |  ---  |
+| 0.45  |   4.58    | 0.015      |  0.2  |  1    |  15   |
+|  1    |   4.58    | 1 / *< K >*|  0.2  |  1    |  15   |
+| 1.376 |   4.58    |  0.05      |  0.2  |  1    |  15   |
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This, as showed by the graphic below, is the best case, because when *R < 1* the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.
-
 
 <table><tr>
 <td>  <img src="./images/Karate_club_smaller_1/curves.png"/> </td>
@@ -72,19 +71,21 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
 <td> <img src="./images/Karate_club_greater_1/gif/anim.gif"/> </td>
 </tr></table>
 
+
+Looking at the three previous graphics, in the first experiment, R < 1, in order to reach the convergence of the algorithm (all the nodes in the the state *R*), were necessary run it for 45 time steps. It is the slowest case, in fact, the other cases R = 1 and R > 1, require less time steps to reach the convergence criterion, since, require less time to achieve the maximum number of the contagions ( respectively 35 and 33 time steps), and also less time in reaching all the individuals in the state *R*. So, the larger the value of R is, the faster the curve of contagions grows, infecting more people
+
 ### Facebook Circles
 
 The model has been tested  the real network, Facebook Circles, repeating also the experiments performed with the smaller one.
 Also for this network we have repeated the experiments testing the model in the 3 different cases, R < 1, R = 1, R > 1. The parameters chosen are similar to the one used for the Karate Club, in fact, are all the same except for the parameter *p*, which choice depends on *k* being much larger. The parameters are reported in the following table:
 
-| *R*   | *K*   |  *p*    |  *q*  | *i0*  | *T0*  |
-|  ---  |  ---  |  ---    |  ---  |  ---  |  ---  |
-| 0.655 | 43.69 |  0.015  |  0.2  |   1   |  15   |
-|  1    | 43.69 | 1/43.69 |  0.2  |   1   |  15   |
-| 2.184 | 43.69 |  0.05   |  0.2  |   1   |  15   |
+| *R*   |  *< K >*  |  *p*       |  *q*  | *i0*  | *T0*  |
+|  ---  |    ---    |  ---       |  ---  |  ---  |  ---  |
+| 0.655 |   43.69   |  0.015     |  0.2  |   1   |  15   |
+|  1    |   43.69   | 1 / *< K >*|  0.2  |   1   |  15   |
+| 2.184 |   43.69   |  0.05      |  0.2  |   1   |  15   |
 
 </br>
-
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R < 1}" />.In this case we have a not too fast growth of infections, and here we have at maximum the 60% of population infected, and after this peak the number of infections decreases rapidly, so, as in the case of the Karate club, with *R < 1* the spread epidemic is contained.
 
@@ -93,8 +94,6 @@ Also for this network we have repeated the experiments testing the model in the 
 <td> <img src="./images/Facebook_R_smaller_1/gif/anim.gif"/> </td>
 </tr></table>
 
-
-
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. Here, the growth of the contagion curve is a little faster than in the previous case, and reaches its peak, more or less, at 65% of the population.
 
 <table><tr>
@@ -102,7 +101,7 @@ Also for this network we have repeated the experiments testing the model in the 
 <td> <img src="./images/Facebook_R_equal_1/gif/anim.gif"/> </td>
 </tr></table>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R > 1}" />. As in the case of the Karate Club network, this is the worst case. In fact, observing the graphic, you can notice that the growth of the infected individuals is much faster than the previous case, reaching in few time steps, the 80% of the population infected. Also here, after the peak of the contagions the curve starts the decrease, with a consequent increase of the recovered individuals.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R > 1}" />. As in the case of the Karate Club network, this is the worst situation. In fact, observing the graphic, you can notice that the growth of the infected individuals is much faster than the previous case, reaching in few time steps, the 80% of the population infected. Also here, after the peak of the contagions the curve starts the decrease, with a consequent increase of the recovered individuals.
 
 <table><tr>
 <td>  <img src="./images/Facebook_R_greater_1/curves.png" width="900" /> </td>

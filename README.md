@@ -53,12 +53,10 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This, as showed by the graphic below, is the best case, because when *R < 1* the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.
 
 
-
-<figure class="left" style="display: inline-block;">
-<img src="./images/Karate_club_smaller_1/curves.png" height="30%" width="30%"/>
-<img src="./images/Karate_club_smaller_1/gif/anim.gif" height="30%" width="30%"/>
-</figure>
-
+<table><tr>
+<td>  <img src="./images/Karate_club_smaller_1/curves.png"/> </td>
+<td> <img src="./images/Karate_club_smaller_1/gif/anim.gif"/> </td>
+</tr></table>
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. This is the *endemic* regime, where, respect to the previous case, there is a fester increase of infections at the beginning, reaching quickly the 100% of individuals infected, because everyone infect one people. Respect to the previous case, the number of total infected remains at its maximum remains stable for some time steps and and doesn't immediately start to decrease.
   

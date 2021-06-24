@@ -28,17 +28,15 @@ As already mentioned, the first network used to test the SIR model is the Karate
 The graph below shows the evolution of the fraction of nodes in S,I,R. As can be seen, the number of susceptible individuals decreases rapidly, and then there is an equally rapid growth in the number of infected individuals. The curve of infected individuals, therefore, grows until it reaches a maximum peak, after which the number of infected individuals begins to decrease until it disappears. The moment this decrease begins, the number begins to increase rapidly until it reaches the total number of individuals. This is because the infected individuals gradually recover from the virus, and thus will no longer be infected.
 This algorithm ends when all individuals are in the R state, and thus the virus has been eradicated.
 
-<figure align=center>
-    <img src="./images/Karate_club/curves.png" width="80%" height="80%"/>
-    <figcaption> <i> Figure 1 - Karate Club Graph </i> </figcaption>
-</figure>
+
 
 The gif below shows the evolution of the spread epidemic in the Karate Club network.
 
-<figure align=center>
-    <img src="./images/Karate_club/gif/anim.gif" style="margin-left: auto; margin-right: auto;" />
-    <figcaption> <i> Figure 2 - Karate Club Graph, spread epidemics animation - SIR model </i> </figcaption>
-</figure>
+
+<table><tr>
+<td>  <img src="./images/Karate_club/curves.png"/> </td>
+<td> <img src="./images/Karate_club/gif/anim.gif"/> </td>
+</tr></table>
 
 We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R&space;=&space;p*k"/>, that is the **basic reproduction number**, which is the expected number of new cases caused by a single infected individual, and where *k* is the number of individuals that everyone meet, and it is obtained computing the mean degree of the network. Hence knowing the mean degree *k* and fixing R, it is possible get the probability*p*.
 

@@ -99,13 +99,15 @@ Also for this network we have repeated the experiments testing the model in the 
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. Here, the growth of the contagion curve is a little faster than in the previous case, and reaches its peak, more or less, at 65% of the population.
 
-<figure align=center>
-    <img src="./images/Facebook_R_equal_1/curves.png" width="80%" height="80%" />
-</figure>
+<table><tr>
+<td>  <img src="./images/Facebook_R_equal_1/curves.png" width="900" /> </td>
+<td> <img src="./images/Facebook_R_equal_1/gif/anim.gif"/> </td>
+</tr></table>
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R > 1}" />. As in the case of the Karate Club network, this is the worst case. In fact, observing the graphic, you can notice that the growth of the infected individuals is much faster than the previous case, reaching in few time steps, the 80% of the population infected. Also here, after the peak of the contagions the curve starts the decrease, with a consequent increase of the recovered individuals.
 
-<figure align=center>
-    <img src="./images/Facebook_R_greater_1/curves.png" width="80%" height="80%">
-</figure>
+<table><tr>
+<td>  <img src="./images/Facebook_R_greater_1/curves.png" width="900" /> </td>
+<td> <img src="./images/Facebook_R_greater_1/gif/anim.gif"/> </td>
+</tr></table>
 

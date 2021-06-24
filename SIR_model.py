@@ -223,12 +223,16 @@ class SIR:
         if self.name_experiment.split("_")[0] == "Facebook":
             nx.draw(self.graph_labelled, node_color=color_map,
                         with_labels=False, pos=pos, edge_color="gray", node_size=100, width=0.5)
+            
+            plt.savefig(os.path.join(IMAGES_FOLDER,
+                                 self.name_experiment, str(self.time_step) + ".png"), dpi=30)
         else:
-             nx.draw(self.graph_labelled, node_color=color_map,
+            nx.draw(self.graph_labelled, node_color=color_map,
                         with_labels=False, pos=pos, edge_color="gray", width=0.5)
+            
+            plt.savefig(os.path.join(IMAGES_FOLDER,
+                                    self.name_experiment, str(self.time_step) + ".png"))
 
-        plt.savefig(os.path.join(IMAGES_FOLDER,
-                                 self.name_experiment, str(self.time_step) + ".png"))
 
         plt.clf()
 
@@ -455,6 +459,7 @@ if __name__ == "__main__":
     model = SIR(G, 0.1, 0.2, 10, 1, "Karate_club")
     model.run()
 
+    
     # expected number of links of a node
     degree = [d for n, d in G.degree()]
     degreeCount = collections.Counter(degree)
@@ -518,3 +523,4 @@ if __name__ == "__main__":
     print("R = ", R)
     model = SIR(G, p, 0.2, 15, 1, "Facebook_R_greater_1")
     model.run()
+    

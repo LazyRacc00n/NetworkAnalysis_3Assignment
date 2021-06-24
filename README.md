@@ -52,15 +52,23 @@ So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1,
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This, as showed by the graphic below, is the best case, because when *R < 1* the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.
 
-<figure align=center>
-    <img src="./images/Karate_club_smaller_1/curves.png" width="80%" height="80%"/>
+
+
+<figure class="left" style="display: inline-block;">
+  <img src="./images/Karate_club_smaller_1/curves.png" height="50%" width="50%"/>
+  
+<img src="./images/Karate_club_smaller_1/gif/anim.gif" height="40%" width="40%"/>
 </figure>
+
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. This is the *endemic* regime, where, respect to the previous case, there is a fester increase of infections at the beginning, reaching quickly the 100% of individuals infected, because everyone infect one people. Respect to the previous case, the number of total infected remains at its maximum remains stable for some time steps and and doesn't immediately start to decrease.
   
 <figure align=center>
     <img src="./images/Karate_club_equal_1/curves.png" width="80%" height="80%" />
 </figure>
+
+
+
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />. This is the *epidemic* regime, and it is the worst case. Here every one infects more than one people. For this reason, we have a exponential growth, rapidly leading to the entire population becoming infected. All the population remain infected for a large amount of time steps, then the curve starts the degrowth.
 
@@ -95,6 +103,7 @@ The model has been tested  the real network, Facebook Circles, repeating also th
 <figure align=center>
     <img src="./images/Facebook_R_smaller_1/curves.png" width="80%" height="80%"/>
 </figure>
+
 
 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. Here, the growth of the contagion curve is a little faster than in the previous case, and reaches its peak, more or less, at 65% of the population.

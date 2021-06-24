@@ -91,8 +91,8 @@ Also for this network we have repeated the experiments testing the model in the 
 - <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R < 1}" />.In this case we have a not too fast growth of infections, and here we have at maximum the 60% of population infected, and after this peak the number of infections decreases rapidly, so, as in the case of the Karate club, with *R < 1* the spread epidemic is contained.
 
 <table><tr>
-<td>  <img src="./images/Facebook_R_smaller_1/curves.png" /> </td>
-<td> <img src="./images/Facebook_R_smaller_1/gif/anim.gif" /> </td>
+<td>  <img src="./images/Facebook_R_smaller_1/curves.png" width="900" /> </td>
+<td> <img src="./images/Facebook_R_smaller_1/gif/anim.gif"/> </td>
 </tr></table>
 
 

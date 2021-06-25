@@ -4,8 +4,8 @@
 <h5 style="text-align: right">Jacopo Dapueto s4345255 </h5>
 
 </br></br>
-In this assignment we have mapped the **SIR model** into a network. First, the SIR model has been applied to a small network, *Karate Club Graph*, then, it is applied with a large network,*Facebook Circles*, that is the one of the other assignments.
-The SIR model simplify the mathematical modeling of infectious diseases. We have 3 different states:
+In this assignment we implemented the **SIR epidemic model** and simulated on different networks: *The Karate Club Graph* and *Facebook dataset* already used in the last assignment.
+The SIR model simplify the mathematical modeling of infectious diseases by identifying 3 different states that a node:
 
 - **Susceptible (S)**. The healthy individuals, who have not yet contacted the virus.
 - **Infectious (I)**. Contagious individuals who have contacted the virus and hence they can infects other individuals.
@@ -13,7 +13,7 @@ The SIR model simplify the mathematical modeling of infectious diseases. We have
 
 In this model there are several parameters:
 
-- The **disease transmission probability p**, which defines the probability of an individual being infected.
+- The **disease transmission probability p**, which defines the probability of an individual (in state *S*) being infected by an infected.
 - <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/>, which represent minimum amount of time steps, of an individual, in the state *I ( infectious)*. After these time steps, an Individual could pass from the state *I* to the state *R (recovered)* with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/>.
 - The number of individual, which are infected at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0}"/> .
 

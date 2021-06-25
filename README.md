@@ -17,10 +17,14 @@ In this model there are several parameters:
 - <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/> represents the minimum number of time steps that an individual in the state *I ( infectious)*. And after an Individual can move from the state *I* to the state *R (recovered)* with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/>. The probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/> is also a parameter.
 - The number of individual infected at the beginning of the simulation, <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0}"/> .
 
-Once all the previous parameters are set, all the nodes are initialized to *S* (no one infected ). Then, the algorithm is executed until convergence, i.e., until all the individuals are in the state *R*: for each infected node are checked the neighbors, a random number is sampled, and if the result is less than *p*, a contagion occurs and those neighbor is moved to the state I. Then, if for an infected  node, a minimum of <img src="https://latex.codecogs.com/svg.image?\inline&space;T_i"/> time steps have elapsed, it is moved to the state *R* with probability *q*.
+All the nodes are initialized to *S* (no one infected ) and the first <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0}"/>  nodes are infected. the simulation is executed until there are no infected nodes anymore.
+for each infected node are checked the neighbors, a random number is sampled, and if the result is less than *p*, a contagion occurs and those neighbor is moved to the state I. Then, if for an infected  node, a minimum of <img src="https://latex.codecogs.com/svg.image?\inline&space;T_i"/> time steps have elapsed, it is moved to the state *R* with probability *q*.
 
 Hence, we have plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
+
+
+The following 
 
 ### Karate Club Graph
 

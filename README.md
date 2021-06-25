@@ -13,7 +13,7 @@ The SIR model simplify the mathematical modeling of infectious diseases by ident
 
 In this model there are several parameters:
 
-- The **disease transmission probability p**, which defines the probability of an individual (in state *S*) being infected by an infected.
+- The **disease transmission probability p**, which defines the probability of an individual (in state *S*) being infected.
 - <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/>, which represent minimum amount of time steps, of an individual, in the state *I ( infectious)*. After these time steps, an Individual could pass from the state *I* to the state *R (recovered)* with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{q}"/>.
 - The number of individual, which are infected at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0}"/> .
 

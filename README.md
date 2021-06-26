@@ -53,7 +53,7 @@ The graphic and the animation below show how the state of the nodes changes duri
 </tr></table>
 
 
-So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1, using this parameters:
+As said before, we simulate the model considering the 3 different values of R, the parameters of the experiments are the following:
 
 | *R*   | *< K >*   |  *p*       |  *q*  | *i0*  | *T0*  |
 |  ---  |    ---    |  ---       |  ---  |  ---  |  ---  |

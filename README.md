@@ -25,10 +25,12 @@ Hence, we have plotted the model with the two types of network, testing differen
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
 Since we are not domain experts we decided to perform three experiments for each network according to the value of **R** (expected number of nodes infected at each wave):
-- *R < 1*
-- *R = 1*
-- *R > 1*
+- *R < 1*, less than one node will be infected at each wave and so the disease dies out after a finite number of waves.
+- *R = 1* At each wave one infected node will infect exactly one Susceptible node.
+- *R > 1* the disease persists by infecting at least one person in each wave.
+The value of *R * is given by * k x p* where *k* is the number of expected edges that a node have and *p* is the probability of being infected. The value of *R* remain constant during the simulation.
 
+We decide to infect only one person at the time *zero* (<img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0=0}"/>)
 
 In the following linecharts and animations, the three states are mapped into 3 different colors:
 - State *S* is *blue*

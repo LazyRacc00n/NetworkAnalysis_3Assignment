@@ -24,7 +24,7 @@ If the time <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf
 Hence, we have plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
-Since we are not domain experts we decided to perform three experiments for each network according to the value of **R** (expected number of nodes infected at each wave):
+Since we are not domain experts we decided to perform three experiments for each network according to the value of **R** (expected number of nodes infected at each wave by an infected):
 - *R < 1*, less than one node will be infected at each wave and so the disease dies out after a finite number of waves.
 - *R = 1* At each wave one infected node will infect exactly one Susceptible node.
 - *R > 1* the disease persists by infecting at least one person in each wave.
@@ -49,7 +49,6 @@ The graphic and the animation below show how the state of the nodes changes duri
 <td> <img src="./images/Karate_club/gif/anim.gif"/> </td>
 </tr></table>
 
-We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&space;R&space;=&space;p*k"/>, that is the **basic reproduction number**, which is the expected number of new cases caused by a single infected individual, and where *k* is the number of individuals that everyone meet, and it is obtained computing the mean degree of the network. Hence knowing the mean degree *k* and fixing R, it is possible get the probability*p*.
 
 So, we have tested the model considering 3 different cases, R < 1, R = 1, R > 1, using this parameters:
 

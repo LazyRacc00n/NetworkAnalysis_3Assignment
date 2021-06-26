@@ -30,7 +30,8 @@ Since we are not domain experts we decided to perform three experiments for each
 - *R > 1* the disease persists by infecting at least one person in each wave.
 The value of *R * is given by * k x p* where *k* is the number of expected edges that a node have and *p* is the probability of being infected. The value of *R* remain constant during the simulation.
 
-We decide to infect only one person at the time *zero* (<img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0=0}"/>)
+We decide to infect only one person at the time *zero* (<img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{i_0=0}"/>).
+As minimum number of waves that a node should stay in the compartment *I* is always *15*, this value is greater enough that a node should infect a reasonable number of the neighbors.
 
 In the following linecharts and animations, the three states are mapped into 3 different colors:
 - State *S* is *blue*

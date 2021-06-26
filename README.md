@@ -24,6 +24,11 @@ If the time <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf
 Hence, we have plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.
 
+Since we are not domain experts we decided to perform three experiments for each network according to the value of **R** (expected number of nodes infected at each wave):
+- *R < 1*
+- *R = 1*
+- *R > 1*
+
 
 In the following linecharts and animations, the three states are mapped into 3 different colors:
 - State *S* is *blue*

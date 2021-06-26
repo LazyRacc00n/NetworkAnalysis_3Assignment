@@ -52,6 +52,8 @@ The graphic and the animation below show how the state of the nodes changes duri
 <td> <img src="./images/Karate_club/gif/anim.gif"/> </td>
 </tr></table>
 
+</br></br>
+
 
 As said before, we simulate the model considering the 3 different values of R, the parameters of the experiments are the following:
 

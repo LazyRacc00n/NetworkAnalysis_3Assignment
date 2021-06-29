@@ -70,7 +70,7 @@ As said before, we simulate the model considering the 3 different values of R, t
 <td> <img src="./images/Karate_club_smaller_1/gif/anim.gif"/> </td>
 </tr></table>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. This is the *endemic* regime, where, respect to the previous case, there is a fester increase of infections at the beginning, reaching quickly the 100% of individuals infected, because everyone infect one people. Respect to the previous case, the number of total infected remains at its maximum remains stable for some time steps and and doesn't immediately start to decrease.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. This is the *endemic* regime, where the number of infections encreases faster untill the curve reaches a plateau where all the nodes are infected. With respect to the previous case, the number of total infections remains stable for some time steps and but it requires less steps (35 time steps) to eradicate the virus.
   
 
 <table><tr>

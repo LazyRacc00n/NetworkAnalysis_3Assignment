@@ -63,7 +63,7 @@ As said before, we simulate the model considering the 3 different values of R, t
 |  1    |   4.58    | 1 / *< K >*|  0.2  |  1    |  15   |
 | 1.376 |   4.58    |  0.05      |  0.2  |  1    |  15   |
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This, as showed by the graphic below, is the best case, because when *R < 1* the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R_0 < 1}" />. This is the best case for an epidemiological point of view: the disease dies out faster because each infected node infects less than one node at each wave. The linecharts below shows that the epidemic reaches the peak ( more or less the 90% of the population ) after 20 time steps the curve of the infected nodes starts immediately to decrease untill no one is sick anymore, this happens at the time steps 45 because the nodes remains infected for at least 15 steps and also the probability *q* is very low. In this regime the epidemic is contained.
 
 <table><tr>
 <td>  <img src="./images/Karate_club_smaller_1/curves.png"/> </td>

@@ -124,6 +124,13 @@ We performed similar experiments testing the model in the 3 different regimes (R
 <td> <img src="./images/Facebook_R_greater_1/gif/anim.gif"/> </td>
 </tr></table>
 
+Comparing these experiments with those of Karate club there are major differences that must be highlighted:
+- First the curve of the infections are completely different. The model on Karate Club easely the majority (or all) of the nodes in all the cases, and on the other hand the model doesn't infect all the nodes in the Facebook dataset in any case.
+- On Karate club as the infected nodes  
 All the curves are characterized by a long tail, mainly because of the small probability *q*.
+
+
+
+
 Comparing these experiments with the previous of the Karate Club network, we can say that the trend of the curves, for the 3 R cases, is quite similar. Also here the number of iterations required in reaching the convergence, decrease with higher R. A clearly visible fact, is that, different network structures can be more or less conductive to the spread of a diseases. In fact, in the case of Karate Club, even with R < 1, the peak of the contagions is reached with the 90% of the population infected, and with R = 1, all the population meet the disease. Instead, with the bigger network, with R < 1, and R = 1, it is reached respectively the 60% and the 65% of the population infected. Hence, this shows how a different network structure greatly affects how, and how much, the disease is spread among people.
 Also in the worst case, R > 1, with a R large enough ( more or less 2.1 ), we have a fast increase of the contagions, reaching quickly the peak, but the disease does not succeed in affecting the entire population, arriving to infect, at most, just over 80% of the population, and also this fact is due to the network structure.

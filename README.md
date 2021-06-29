@@ -110,7 +110,7 @@ We performed similar experiments testing the model in the 3 different regimes (R
 <td> <img src="./images/Facebook_R_smaller_1/gif/anim.gif"/> </td>
 </tr></table>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. Here, the growth of the contagion curve is a little faster than in the previous case, and reaches its peak, more or less, at 65% of the population.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. The growth of the contagion curve is a little faster than in the previous case, but still al lot of nodes remain in the state *S* in the end. Only 65% of the population get infected but it requires less steps stop the infection.
 
 <table><tr>
 <td>  <img src="./images/Facebook_R_equal_1/curves.png" width="900" /> </td>
@@ -124,5 +124,6 @@ We performed similar experiments testing the model in the 3 different regimes (R
 <td> <img src="./images/Facebook_R_greater_1/gif/anim.gif"/> </td>
 </tr></table>
 
+All the curves are characterized by a long tail, mainly because of the small probability *q*.
 Comparing these experiments with the previous of the Karate Club network, we can say that the trend of the curves, for the 3 R cases, is quite similar. Also here the number of iterations required in reaching the convergence, decrease with higher R. A clearly visible fact, is that, different network structures can be more or less conductive to the spread of a diseases. In fact, in the case of Karate Club, even with R < 1, the peak of the contagions is reached with the 90% of the population infected, and with R = 1, all the population meet the disease. Instead, with the bigger network, with R < 1, and R = 1, it is reached respectively the 60% and the 65% of the population infected. Hence, this shows how a different network structure greatly affects how, and how much, the disease is spread among people.
 Also in the worst case, R > 1, with a R large enough ( more or less 2.1 ), we have a fast increase of the contagions, reaching quickly the peak, but the disease does not succeed in affecting the entire population, arriving to infect, at most, just over 80% of the population, and also this fact is due to the network structure.

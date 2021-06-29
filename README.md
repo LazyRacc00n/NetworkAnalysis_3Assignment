@@ -110,14 +110,14 @@ We performed similar experiments testing the model in the 3 different regimes (R
 <td> <img src="./images/Facebook_R_smaller_1/gif/anim.gif"/> </td>
 </tr></table>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. The growth of the contagion curve is a little faster than in the previous case, but still al lot of nodes remain in the state *S* in the end. Only 65% of the population get infected but it requires less steps stop the infection.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;=&space;1}" title="\mathbf{R = 1}" />. The growth of the contagion curve is a little faster than in the previous case, but still al lot of nodes remain in the state *S* in the end. Only 65% of the population get infected but it requires less steps to stop the infection.
 
 <table><tr>
 <td>  <img src="./images/Facebook_R_equal_1/curves.png" width="900" /> </td>
 <td> <img src="./images/Facebook_R_equal_1/gif/anim.gif"/> </td>
 </tr></table>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R > 1}" />. As in the case of the Karate Club network, this is the worst situation. In fact, observing the graphic, you can notice that the growth of the infected individuals is much faster than the previous case, reaching in few time steps, the 80% of the population infected. Also here, after the peak of the contagions the curve starts the decrease, with a consequent increase of the recovered individuals.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R > 1}" />. Also here can be observed an exponential growth of the infected individuals, reaching in few time steps, the 80% of the population. But in this case the transition between the state *I* to *R* seems to be as faster as the transition from *S* to *I*. At the end there are still few nodes that are not infected.
 
 <table><tr>
 <td>  <img src="./images/Facebook_R_greater_1/curves.png" width="900" /> </td>

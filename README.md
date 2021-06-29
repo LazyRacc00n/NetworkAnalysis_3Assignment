@@ -79,7 +79,7 @@ As said before, we simulate the model considering the 3 different values of R, t
 </tr></table>
 
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />. This is the *epidemic* regime, and it is the worst case. Here every one infects more than one people. For this reason, we have a exponential growth, rapidly leading to the entire population becoming infected. All the population remain infected for a large amount of time steps, then the curve starts the degrowth.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;>&space;1}" title="\mathbf{R_0 > 1}" />. This is the *epidemic* regime, and it is the worst case. Here every one infects more than one people at aech wave. For this reason, we have a exponential growth, rapidly leading to the entire population becoming infected. All the population remain infected for a large amount of time steps, then the curve starts the degrowth rapidly. The simulation ends in 33 time steps.
 
 <table><tr>
 <td>  <img src="./images/Karate_club_greater_1/curves.png" /> </td>
@@ -87,12 +87,13 @@ As said before, we simulate the model considering the 3 different values of R, t
 </tr></table>
 
 
-Looking at the three previous graphics, in the first experiment, R < 1, in order to reach the convergence of the algorithm (all the nodes in the the state *R*), were necessary run it for 45 time steps. It is the slowest case, in fact, the other cases R = 1 and R > 1, require less time steps to reach the convergence criterion, since, require less time to achieve the maximum number of the contagions ( respectively 35 and 33 time steps), and also less time in reaching all the individuals in the state *R*. So, the larger the value of R is, the faster the curve of contagions grows, infecting more people
+Looking at the three previous charts, the first experiment requires more steps to end the simulation. It is the slowest case, in fact the other cases R = 1 and R > 1, require lesser time steps to reach the convergence criterion, mainly because all the individuals get in the state *R* in less time. So the larger the value of R is, the faster the curve of contagions grows.
+But this is a very small graph even though it displays many interesting features. In the last assignment we discover that the Karate club graph is disassortative so if one hubs get infected also all its neighbors get to the state *R* because of <img src="https://latex.codecogs.com/svg.image?\inline&space;\mathbf{T_i}"/> is quite big.
 
 ### Facebook Circles
 
-The model has been tested  the real network, Facebook Circles, repeating also the experiments performed with the smaller one.
-Also for this network we have repeated the experiments testing the model in the 3 different cases, R < 1, R = 1, R > 1. The parameters chosen are similar to the one used for the Karate Club, in fact, are all the same except for the parameter *p*, which choice depends on *k* being much larger. The parameters are reported in the following table:
+Here the model has been experimented on the Facebook Circles graph.
+We performed similar experiments testing the model in the 3 different regimes (R < 1, R = 1, R > 1). The parameters chosen are similar to those used for the Karate Club, only for the parameter *p* is adjusted because of *k* being much bigger. The parameters are reported in the following table:
 
 | *R*   |  *< K >*  |  *p*       |  *q*  | *i0*  | *T0*  |
 |  ---  |    ---    |  ---       |  ---  |  ---  |  ---  |
@@ -102,7 +103,7 @@ Also for this network we have repeated the experiments testing the model in the 
 
 </br>
 
-- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R < 1}" />.In this case we have a not too fast growth of infections, and here we have at maximum the 60% of population infected, and after this peak the number of infections decreases rapidly, so, as in the case of the Karate club, with *R < 1* the spread epidemic is contained.
+- <img src="https://latex.codecogs.com/svg.image?\mathbf{R&space;<&space;1}" title="\mathbf{R < 1}" />.In this case we have a not too fast growth of infections were only the 60% of population is infected. The GIF shows the peripheral communities not getting any case of infections because they are more isolated wrt the core of the network. The epidemic spread is contained but it requires more than 100 steps to dies out.
 
 <table><tr>
 <td>  <img src="./images/Facebook_R_smaller_1/curves.png" width="900" /> </td>

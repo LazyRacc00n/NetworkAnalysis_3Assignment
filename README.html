@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\simoc\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.21\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="file:///c:\Users\simoc\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.22\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
       
       
       
@@ -266,8 +266,8 @@ pre[data-line] .line-highlight[data-end]:after {
 <h5 style="text-align: right">Simone Campisi s4341240 </h5>
 <h5 style="text-align: right">Jacopo Dapueto s4345255 </h5>
 <p><br><br><br>
-In this assignment we have mapped the <strong>SIR model</strong> into a network. First, the SIR model has been applied to a small network, <em>Karate Club Graph</em>, then, it is applied with a large network,<em>Facebook Circles</em>, that is the one of the other assignments.<br>
-The SIR model simplify the mathematical modeling of infectious diseases. We have 3 different states:</p>
+In this assignment we implemented the <strong>SIR epidemic model</strong> and simulated on different networks: <em>The Karate Club Graph</em> and <em>Facebook dataset</em> already used in the last assignment.<br>
+The SIR model simplify the mathematical modeling of infectious diseases by identifying 3 different states that a node:</p>
 <ul>
 <li><strong>Susceptible (S)</strong>. The healthy individuals, who have not yet contacted the virus.</li>
 <li><strong>Infectious (I)</strong>. Contagious individuals who have contacted the virus and hence they can infects other individuals.</li>
@@ -275,30 +275,47 @@ The SIR model simplify the mathematical modeling of infectious diseases. We have
 </ul>
 <p>In this model there are several parameters:</p>
 <ul>
-<li>The <strong>disease transmission probability p</strong>, which defines the probability of an individual being infected.</li>
-<li><img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{T_i}">, which represent minimum amount of time steps, of an individual, in the state <em>I ( infectious)</em>. After these time steps, an Individual could pass from the state <em>I</em> to the state <em>R (recovered)</em> with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{q}">.</li>
-<li>The number of individual, which are infected at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{i_0}"> .</li>
+<li>The <strong>disease transmission probability p</strong>, which defines the probability of an individual (in state <em>S</em>) being infected if it is neighbors of an node in state I.</li>
+<li><img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{T_i}"> represents the minimum number of time steps that an individual in the state <em>I ( infectious)</em>. And after an Individual can move from the state <em>I</em> to the state <em>R (recovered)</em> with a certain probability <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{q}">. The probability <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{q}"> is also a parameter.</li>
+<li>The number of individual infected at the beginning of the simulation, <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{i_0}"> .</li>
 </ul>
-<p>Once all the previous parameters are set, all the nodes are initialized to <em>S</em> (no one infected ). Then, the algorithm is executed until convergence, i.e., until all the individuals are in the state <em>R</em>: for each infected node are checked the neighbors, a random number is sampled, and if the result is less than <em>p</em>, a contagion occurs and those neighbor is moved to the state I. Then, if for an infected  node, a minimum of <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;T_i"> time steps have elapsed, it is moved to the state <em>R</em> with probability <em>q</em>.</p>
+<p>All the nodes are initialized to <em>S</em> and the first <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{i_0}">  nodes are infected. the simulation is executed until there is at least one infected node.<br>
+For each healty neighbor of an infected node a number is sampled randomically and if the result is less than <em>p</em>, the contagion occurs and the neighbor is moved from the state <em>S</em> to <em>I</em>.<br>
+If the time <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{T_i}"> for an infected nodehas elapsed, it is moved from the state <em>I</em> to <em>R</em> with probability <em>q</em> in the same way a node move from <em>S</em> to <em>I</em>.</p>
 <p>Hence, we have plotted the model with the two types of network, testing different parameters, in order to observe the different behaviors of the model. Therefore, we plotted a graph showing the evolution of the relative number of nodes in the three states S,I,R, for each time step.<br>
 For the smaller network ( Karate Club ), we have build also a gif, which shows the evolution of the spread epidemic.</p>
+<p>Since we are not domain experts we decided to perform three experiments for each network according to the value of <strong>R</strong> (expected number of nodes infected at each wave by an infected):</p>
+<ul>
+<li><em>R &lt; 1</em>, less than one node will be infected at each wave and so the disease dies out after a finite number of waves.</li>
+<li><em>R = 1</em> At each wave one infected node will infect exactly one Susceptible node.</li>
+<li><em>R &gt; 1</em> the disease persists by infecting at least one person in each wave.</li>
+</ul>
+<p>The value of <em>R * is given by * k x p</em> where <em>k</em> is the number of expected edges that a node have and <em>p</em> is the probability of being infected. The value of <em>R</em> remain constant during the simulation.</p>
+<p>We decide to infect only one person at the time <em>zero</em> (<img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{i_0=0}">).<br>
+As minimum number of waves that a node should stay in the compartment <em>I</em> is always <em>15</em>, this value is greater enough that a node should infect a reasonable number of the neighbors.</p>
+<p>In the following linecharts and animations, the three states are mapped into 3 different colors:</p>
+<ul>
+<li>State <em>S</em> is <em>blue</em></li>
+<li>State <em>I</em> is <em>red</em></li>
+<li>State <em>R</em> is <em>green</em></li>
+</ul>
 <h3 class="mume-header" id="karate-club-graph">Karate Club Graph</h3>
 
-<p>As already mentioned, the first network used to test the SIR model is the Karate Club graph. The model has been created with the disease transmission probability <em>p=0.1</em>, a minimum amount of time steps for the infected individuals <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;T_i&amp;space;=&amp;space;10">, the transition probability ( from I to R ) <em>q=0.2</em>, and only 1 infected individual at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;i_0">.<br>
-The graph below shows the evolution of the fraction of nodes in S,I,R. As can be seen, the number of susceptible individuals decreases rapidly, and then there is an equally rapid growth in the number of infected individuals. The curve of infected individuals, therefore, grows until it reaches a maximum peak, after which the number of infected individuals begins to decrease until it disappears. The moment this decrease begins, the number begins to increase rapidly until it reaches the total number of individuals. This is because the infected individuals gradually recover from the virus, and thus will no longer be infected.<br>
-This algorithm ends when all individuals are in the R state, and thus the virus has been eradicated.</p>
-<p>The gif below shows the evolution of the spread epidemic in the Karate Club network.</p>
+<p>As already mentioned, the first network used to test the SIR model is the Karate Club graph. The model has been created with the disease transmission probability <em>p=0.1</em>, a minimum amount of time steps for the infected individuals <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;T_i&amp;space;=&amp;space;10">, the transition probability ( from I to R ) <em>q=0.2</em>, and only 1 infected individual at the beginning, <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;i_0">.</p>
+<p>The graph below shows the evolution of the fraction of nodes in S, I, R. As can be seen, the number of susceptible individuals decreases rapidly, and then there is an equally rapid growth in the number of infected individuals. The curve of infected individuals, therefore, grows until it reaches a maximum peak, after which the number of infected individuals begins to decrease until it disappears. The moment this decrease begins, the number begins to increase rapidly until it reaches the total number of individuals.</p>
+<p>This is because the infected individuals gradually recover from the virus, and thus will no longer be infected. The algorithm ends when all individuals are in the R state, and thus the virus has been eradicated.<br>
+The graphic and the animation below show how the state of the nodes changes during the execution of the SIR model.</p>
 <table><tbody><tr>
 <td>  <img src="./images/Karate_club/curves.png"> </td>
 <td> <img src="./images/Karate_club/gif/anim.gif"> </td>
 </tr></tbody></table>
-<p>We performed some experiments changing the parameter of the SIR model. In particular, we have taken as reference the value <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;R&amp;space;=&amp;space;p*k">, that is the <strong>basic reproduction number</strong>, which is the expected number of new cases caused by a single infected individual, and where <em>k</em> is the number of individuals that everyone meet, and it is obtained computing the mean degree of the network. Hence knowing the mean degree <em>k</em> and fixing R, it is possible get the probability<em>p</em>.</p>
-<p>So, we have tested the model considering 3 different cases, R &lt; 1, R = 1, R &gt; 1, using this parameters:</p>
+<p><br><br></p>
+<p>As said before, we simulate the model considering the 3 different values of R, the parameters of the experiments are the following:</p>
 <table>
 <thead>
 <tr>
 <th><em>R</em></th>
-<th><em>K</em></th>
+<th><em>&lt; K &gt;</em></th>
 <th><em>p</em></th>
 <th><em>q</em></th>
 <th><em>i0</em></th>
@@ -317,7 +334,7 @@ This algorithm ends when all individuals are in the R state, and thus the virus 
 <tr>
 <td>1</td>
 <td>4.58</td>
-<td>1/4.58</td>
+<td>1 / <em>&lt; K &gt;</em></td>
 <td>0.2</td>
 <td>1</td>
 <td>15</td>
@@ -333,35 +350,37 @@ This algorithm ends when all individuals are in the R state, and thus the virus 
 </tbody>
 </table>
 <ul>
-<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&lt;&amp;space;1}" title="\mathbf{R_0 &lt; 1}">. This, as showed by the graphic below, is the best case, because when <em>R &lt; 1</em> the disease dies out faster, because we have that not all people infect one. In fact after reaching peak ( more or less the 90% of the population ) infections the contagion curve immediately starts to decrease. In this regime the epidemic is contained.</li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&lt;&amp;space;1}" title="\mathbf{R_0 &lt; 1}">. This is the best case for an epidemiological point of view: the disease dies out faster because each infected node infects less than one node at each wave. The linecharts below shows that the epidemic reaches the peak ( more or less the 90% of the population ) after 20 time steps the curve of the infected nodes starts immediately to decrease untill no one is sick anymore, this happens at the time steps 45 because the nodes remains infected for at least 15 steps and also the probability <em>q</em> is very low. In this regime the epidemic is contained.</li>
 </ul>
 <table><tbody><tr>
 <td>  <img src="./images/Karate_club_smaller_1/curves.png"> </td>
 <td> <img src="./images/Karate_club_smaller_1/gif/anim.gif"> </td>
 </tr></tbody></table>
 <ul>
-<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;=&amp;space;1}" title="\mathbf{R = 1}">. This is the <em>endemic</em> regime, where, respect to the previous case, there is a fester increase of infections at the beginning, reaching quickly the 100% of individuals infected, because everyone infect one people. Respect to the previous case, the number of total infected remains at its maximum remains stable for some time steps and and doesn&apos;t immediately start to decrease.</li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;=&amp;space;1}" title="\mathbf{R = 1}">. This is the <em>endemic</em> regime, where the number of infections encreases faster untill the curve reaches a plateau where all the nodes are infected. With respect to the previous case, the number of total infections remains stable for some time steps and but it requires less steps (35 time steps) to eradicate the virus.</li>
 </ul>
 <table><tbody><tr>
 <td>  <img src="./images/Karate_club_equal_1/curves.png"> </td>
 <td> <img src="./images/Karate_club_equal_1/gif/anim.gif"> </td>
 </tr></tbody></table>
 <ul>
-<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&gt;&amp;space;1}" title="\mathbf{R_0 &gt; 1}">. This is the <em>epidemic</em> regime, and it is the worst case. Here every one infects more than one people. For this reason, we have a exponential growth, rapidly leading to the entire population becoming infected. All the population remain infected for a large amount of time steps, then the curve starts the degrowth.</li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&gt;&amp;space;1}" title="\mathbf{R_0 &gt; 1}">. This is the <em>epidemic</em> regime, and it is the worst case. Here every one infects more than one people at aech wave. For this reason, we have a exponential growth, rapidly leading to the entire population becoming infected. All the population remain infected for a large amount of time steps, then the curve starts the degrowth rapidly. The simulation ends in 33 time steps.</li>
 </ul>
 <table><tbody><tr>
 <td>  <img src="./images/Karate_club_greater_1/curves.png"> </td>
 <td> <img src="./images/Karate_club_greater_1/gif/anim.gif"> </td>
 </tr></tbody></table>
+<p>Looking at the three previous charts, the first experiment requires more steps to end the simulation. It is the slowest case, in fact the other cases R = 1 and R &gt; 1, require lesser time steps to reach the convergence criterion, mainly because all the individuals get in the state <em>R</em> in less time. So the larger the value of R is, the faster the curve of contagions grows.<br>
+But this is a very small graph even though it displays many interesting features. In the last assignment we discover that the Karate club graph is disassortative so if one hubs get infected also all its neighbors get to the state <em>R</em> because of <img src="https://latex.codecogs.com/svg.image?\inline&amp;space;\mathbf{T_i}"> is quite big.</p>
 <h3 class="mume-header" id="facebook-circles">Facebook Circles</h3>
 
-<p>The model has been tested  the real network, Facebook Circles, repeating also the experiments performed with the smaller one.<br>
-Also for this network we have repeated the experiments testing the model in the 3 different cases, R &lt; 1, R = 1, R &gt; 1. The parameters chosen are similar to the one used for the Karate Club, in fact, are all the same except for the parameter <em>p</em>, which choice depends on <em>k</em> being much larger. The parameters are reported in the following table:</p>
+<p>Here the model has been experimented on the Facebook Circles graph.<br>
+We performed similar experiments testing the model in the 3 different regimes (R &lt; 1, R = 1, R &gt; 1). The parameters chosen are similar to those used for the Karate Club, only for the parameter <em>p</em> is adjusted because of <em>k</em> being much bigger. The parameters are reported in the following table:</p>
 <table>
 <thead>
 <tr>
 <th><em>R</em></th>
-<th><em>K</em></th>
+<th><em>&lt; K &gt;</em></th>
 <th><em>p</em></th>
 <th><em>q</em></th>
 <th><em>i0</em></th>
@@ -380,7 +399,7 @@ Also for this network we have repeated the experiments testing the model in the 
 <tr>
 <td>1</td>
 <td>43.69</td>
-<td>1/43.69</td>
+<td>1 / <em>&lt; K &gt;</em></td>
 <td>0.2</td>
 <td>1</td>
 <td>15</td>
@@ -397,26 +416,32 @@ Also for this network we have repeated the experiments testing the model in the 
 </table>
 <br>
 <ul>
-<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&lt;&amp;space;1}" title="\mathbf{R &lt; 1}">.In this case we have a not too fast growth of infections, and here we have at maximum the 60% of population infected, and after this peak the number of infections decreases rapidly, so, as in the case of the Karate club, with <em>R &lt; 1</em> the spread epidemic is contained.</li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&lt;&amp;space;1}" title="\mathbf{R &lt; 1}">.In this case we have a not too fast growth of infections were only the 60% of population is infected. The GIF shows the peripheral communities not getting any case of infections because they are more isolated wrt the core of the network. The epidemic spread is contained but it requires more than 100 steps to dies out.</li>
 </ul>
 <table><tbody><tr>
 <td>  <img src="./images/Facebook_R_smaller_1/curves.png" width="900"> </td>
 <td> <img src="./images/Facebook_R_smaller_1/gif/anim.gif"> </td>
 </tr></tbody></table>
 <ul>
-<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;=&amp;space;1}" title="\mathbf{R = 1}">. Here, the growth of the contagion curve is a little faster than in the previous case, and reaches its peak, more or less, at 65% of the population.</li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;=&amp;space;1}" title="\mathbf{R = 1}">. The growth of the contagion curve is a little faster than in the previous case, but still al lot of nodes remain in the state <em>S</em> in the end. Only 65% of the population get infected but it requires less steps to stop the infection.</li>
 </ul>
 <table><tbody><tr>
 <td>  <img src="./images/Facebook_R_equal_1/curves.png" width="900"> </td>
 <td> <img src="./images/Facebook_R_equal_1/gif/anim.gif"> </td>
 </tr></tbody></table>
 <ul>
-<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&gt;&amp;space;1}" title="\mathbf{R &gt; 1}">. As in the case of the Karate Club network, this is the worst situation. In fact, observing the graphic, you can notice that the growth of the infected individuals is much faster than the previous case, reaching in few time steps, the 80% of the population infected. Also here, after the peak of the contagions the curve starts the decrease, with a consequent increase of the recovered individuals.</li>
+<li><img src="https://latex.codecogs.com/svg.image?\mathbf{R&amp;space;&gt;&amp;space;1}" title="\mathbf{R &gt; 1}">. Also here can be observed an exponential growth of the infected individuals, reaching in few time steps, the 80% of the population. But in this case the transition between the state <em>I</em> to <em>R</em> seems to be as faster as the transition from <em>S</em> to <em>I</em>. At the end there are still few nodes that are not infected.</li>
 </ul>
 <table><tbody><tr>
 <td>  <img src="./images/Facebook_R_greater_1/curves.png" width="900"> </td>
 <td> <img src="./images/Facebook_R_greater_1/gif/anim.gif"> </td>
 </tr></tbody></table>
+<p>Comparing these experiments with those of Karate club there are major differences that must be highlighted:</p>
+<ul>
+<li>First the curve of the infections are completely different. The model on Karate Club easely the majority (or all) of the nodes in all the cases, and on the other hand the model doesn&apos;t infect all the nodes in the Facebook dataset in any case.</li>
+<li>On Facebook in each experiment the infection curves are characterized by a long tail mainly because of the small probability <em>q</em>. But such behaviour is not present on those of Karate club where the simulation ends after few steps after the initial decreases. Another reason for that is the kind of structure of the network, the Facebook dataset seems to be less conductive in certain regions between the communites.</li>
+<li>The experiments on Facebook requires way more times steps to end up, also because of the number of nodes.</li>
+</ul>
 
       </div>
       
